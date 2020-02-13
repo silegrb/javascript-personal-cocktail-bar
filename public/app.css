@@ -49,7 +49,15 @@ h1 {
     margin-top: 5vh;
 }
 .searchForm{
+    border-radius: 20px;
     display: inline-block;
+}
+
+.searchForm:hover{
+    border-radius: 20px;
+    display: inline-block;
+    box-shadow:
+    0 0 25px rgba(255, 255, 255, 0.3);
 }
 
 #searchInput {
@@ -62,7 +70,7 @@ h1 {
     font-size: 20px;
 }
 
-textarea:focus, input:focus{
+#searchButton:focus,textarea:focus, input:focus{
     outline: none;
 }
 
@@ -71,6 +79,13 @@ textarea:focus, input:focus{
     background: transparent;
     border: none;
     float: right;
+}
+
+#searchButton:hover {
+    background: grey;
+    border: none;
+    float: right;
+    border-radius: 20px;
 }
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
@@ -92,16 +107,19 @@ textarea:focus, input:focus{
     border-radius: 20px;
     margin-left: 10vw;
     margin-top: 5vh;
+    background: rgba(255, 255, 255, 0.1);
+    padding-left: 3px;
+    padding-right: 7px;
 }
 
 .drinkName {
-    background: linear-gradient(to right,#282828,#181818,#181818,#181818,#282828);
+    background: transparent;
     color: white;
     border: none;
-    font-size: 25px;
-    height: 50px;
-    padding-top: 3px;
-    padding-left: 20px;
+    font-size: 30px;
+    margin-top: -5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 100;
 }
 
 .wrongSearch{
@@ -111,4 +129,16 @@ textarea:focus, input:focus{
     font-size: 20px;
     height: 50px;
     padding-top: 3px;
+}
+
+.alcoholic {
+    color: red;
+    text-align: center;
+    letter-spacing: 10px;
+}
+
+.alcoholFree {
+    color: greenyellow;
+    text-align: center;
+    letter-spacing: 15px;
 }
