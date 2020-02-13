@@ -16,6 +16,11 @@ body{
     color: white;
 }
 
+.header a:hover{
+    text-decoration: none;
+    color: grey;
+}
+
 h1 {
     font-size: 50px;
 }
@@ -35,4 +40,4 @@ h1 {
     padding: 10px;
 }
 
-
+.
