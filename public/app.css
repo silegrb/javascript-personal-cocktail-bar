@@ -153,3 +153,16 @@ h1 {
     letter-spacing: 15px;
     font-family: 'Abel';
 }
+
+#ingredientsTable{
+    border-collapse: collapse;
+}
+
+#ingredientsTable td,th{
+    border: none;
+}
+
+#drop {
+    width: 20px;
+    height: 20px;
+}

@@ -75,12 +75,15 @@ let Calls = (function(){
             }
             innerHTMLFormatted += "<br><br>"
             var counter = 1;
+            innerHTMLFormatted += "<table id=\"ingredientsTable\">"
             while(drinks[i]["strIngredient" + counter.toString()] != null){
-                innerHTMLFormatted += drinks[i]["strIngredient" + counter.toString()];
-                innerHTMLFormatted += " <b style=\"font-size:20px;\"> " + drinks[i]["strMeasure" + counter.toString()] + "</b>";
-                innerHTMLFormatted += "<br>";
+                innerHTMLFormatted += "<tr><td><img id=\"drop\" src=\"drop.png\"></td>";
+                innerHTMLFormatted += "<td><b>" + drinks[i]["strIngredient" + counter.toString()] + "</b></td>";
+                if( drinks[i]["strMeasure" + counter.toString()] != null ) innerHTMLFormatted += "<td>(" + drinks[i]["strMeasure" + counter.toString()] + ")</td>";
+                innerHTMLFormatted += "</tr>";
                 counter++;
             }
+            innerHTMLFormatted += "</table>";
             description.innerHTML =  innerHTMLFormatted;
             description.style.fontFamily = 'Abel';
             description.style.paddingLeft = "5px";
