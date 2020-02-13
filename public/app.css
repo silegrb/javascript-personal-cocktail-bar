@@ -78,7 +78,7 @@ h1 {
     font-family: 'Abel';
 }
 
-#searchButton:focus,textarea:focus, input:focus{
+#addToFavourites:focus,#searchButton:focus,textarea:focus, input:focus{
     outline: none;
 }
 
@@ -165,4 +165,20 @@ h1 {
 #drop {
     width: 20px;
     height: 20px;
+}
+
+#addToFavourites {
+    background: #3cd070;
+    color: white;
+    margin-left: 370px;
+    border: none;
+    border-radius: 10px;
+    height: 50px;
+    font-family: 'Abel';
+    font-size: 15px;
+}
+
+#addToFavourites:hover {
+    box-shadow:
+    0 0 25px rgba(255, 255, 255, 0.3);
 }

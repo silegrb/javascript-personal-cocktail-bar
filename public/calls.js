@@ -55,6 +55,9 @@ let Calls = (function(){
 
             var wrapperDivImgDesc = document.createElement("div");
             wrapperDivImgDesc.style.display ="inline-block";
+
+            var buttonDiv = document.createElement("div");
+            buttonDiv.innerHTML = "<button id=\"addToFavourites\">ADD TO FAVOURITES</button>";
             var img = styleImg(drinks[i].strDrinkThumb, "200", "250");
             img.style.float = "left";
 
@@ -76,7 +79,7 @@ let Calls = (function(){
             innerHTMLFormatted += "<br><br>"
             var counter = 1;
             innerHTMLFormatted += "<table id=\"ingredientsTable\">"
-            while(drinks[i]["strIngredient" + counter.toString()] != null){
+            while(drinks[i]["strIngredient" + counter.toString()] != null && drinks[i]["strIngredient" + counter.toString()] != ""){
                 innerHTMLFormatted += "<tr><td><img id=\"drop\" src=\"drop.png\"></td>";
                 innerHTMLFormatted += "<td><b>" + drinks[i]["strIngredient" + counter.toString()] + "</b></td>";
                 if( drinks[i]["strMeasure" + counter.toString()] != null ) innerHTMLFormatted += "<td>(" + drinks[i]["strMeasure" + counter.toString()] + ")</td>";
@@ -96,6 +99,7 @@ let Calls = (function(){
             newDiv.appendChild(p);
             newDiv.appendChild(alcoholAlertParagraph);
             newDiv.appendChild(wrapperDivImgDesc);
+            newDiv.appendChild(buttonDiv);
             if( i < drinks.length -1 ) {
                 newDiv.style.borderBottom = "2px solid rgba(255,255,255,0.3)";
                 newDiv.style.marginTop = "5px";
@@ -107,8 +111,13 @@ let Calls = (function(){
   })
 
     }
+
+    function getCachedSearchImpl(){
+        return cachedSearch;
+    }
 return {
-    getCoctails: getCoctailsImpl
+    getCoctails: getCoctailsImpl,
+    getCachedSearch: getCachedSearchImpl
 }
 
 }())

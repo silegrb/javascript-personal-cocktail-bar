@@ -8,4 +8,5 @@ function clickSearch(){
     Calls.getCoctails(currentInput);
     currentInput = "";
     document.getElementById("searchInput").value = "";
+    
 }
