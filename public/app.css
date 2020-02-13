@@ -94,3 +94,12 @@ textarea:focus, input:focus{
     margin-top: 5vh;
 }
 
+.drinkName {
+    background: linear-gradient(to right,#282828,#181818,#181818,#181818,#282828);
+    color: white;
+    border: none;
+    font-size: 25px;
+    height: 50px;
+    padding-top: 3px;
+    padding-left: 20px;
+}
