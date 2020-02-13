@@ -1,0 +1,44 @@
+body{
+    background: #282828;
+}
+
+.header{
+    margin: auto;
+    background: linear-gradient(to right,#282828,#181818,#181818,#181818,#282828);
+    color: white;
+    text-align: center;
+    padding: 2px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.header a{
+    text-decoration: none;
+    color: white;
+}
+
+h1 {
+    font-size: 50px;
+}
+
+.about {
+    margin:auto;
+    background: #181818;
+    width: 400px;
+    margin-top: 50px;
+}
+
+.about p {
+    margin: auto;
+    color: white;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 10px;
+}
+
+#about-movie-icon{
+    width: 300px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
