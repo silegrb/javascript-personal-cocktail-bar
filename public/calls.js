@@ -37,22 +37,62 @@ let Calls = (function(){
       for( var i = 0; i < drinks.length; i++ ){
             var newDiv = document.createElement("div");
             newDiv.style.padding = "15px";
+
             var p = document.createElement("p");
-            p.innerHTML = drinks[i].strDrink;
+            p.innerHTML = drinks[i].strDrink.toUpperCase();
+            p.style.fontSize = "20px";
             p.classList.add("drinkName");
+
             var alcoholAlertParagraph = document.createElement("p");
-            alcoholAlertParagraph.style.whiteSpace = "nowrap";
-        if( drinks[i].strAlcoholic == "Alcoholic" ){
-            alcoholAlertParagraph.innerHTML = "ALCOHOLIC";
-            alcoholAlertParagraph.classList.add("alcoholic");
-        }else{
-            alcoholAlertParagraph.innerHTML = "ALCOHOL FREE";
-            alcoholAlertParagraph.classList.add("alcoholFree");
-        }
-            var img = styleImg(drinks[i].strDrinkThumb, "100", "100");
+            if( drinks[i].strAlcoholic == "Alcoholic" ){
+                alcoholAlertParagraph.innerHTML = "ALCOHOLIC";
+                alcoholAlertParagraph.classList.add("alcoholic");
+            }
+            else{
+                alcoholAlertParagraph.innerHTML = "ALCOHOL FREE";
+                alcoholAlertParagraph.classList.add("alcoholFree");
+            }
+
+            var wrapperDivImgDesc = document.createElement("div");
+            wrapperDivImgDesc.style.display ="inline-block";
+            var img = styleImg(drinks[i].strDrinkThumb, "200", "250");
+            img.style.float = "left";
+
+            var description = document.createElement("p");
+            var innerHTMLFormatted = "";
+            var backSpaceMatched = false;
+            for( var j = 0; j < drinks[i].strInstructions.length; j++ ){
+                if( backSpaceMatched &&  drinks[i].strInstructions[j] == ' '){
+                    innerHTMLFormatted += "<br>";
+                    backSpaceMatched = false;
+                }
+                if( j != 0 && j % 40 == 0){
+                    if( drinks[i].strInstructions[j] == ' ')
+                        innerHTMLFormatted += "<br>";
+                    else backSpaceMatched = true;
+                }
+                innerHTMLFormatted += drinks[i].strInstructions[j];
+            }
+            innerHTMLFormatted += "<br><br>"
+            var counter = 1;
+            while(drinks[i]["strIngredient" + counter.toString()] != null){
+                innerHTMLFormatted += drinks[i]["strIngredient" + counter.toString()];
+                innerHTMLFormatted += " <b style=\"font-size:20px;\"> " + drinks[i]["strMeasure" + counter.toString()] + "</b>";
+                innerHTMLFormatted += "<br>";
+                counter++;
+            }
+            description.innerHTML =  innerHTMLFormatted;
+            description.style.fontFamily = 'Abel';
+            description.style.paddingLeft = "5px";
+            description.style.color = "white";
+            description.style.float = "left";
+
+            wrapperDivImgDesc.appendChild(img);
+            wrapperDivImgDesc.appendChild(description);
+
             newDiv.appendChild(p);
             newDiv.appendChild(alcoholAlertParagraph);
-            newDiv.appendChild(img);
+            newDiv.appendChild(wrapperDivImgDesc);
             if( i < drinks.length -1 ) {
                 newDiv.style.borderBottom = "2px solid rgba(255,255,255,0.3)";
                 newDiv.style.marginTop = "5px";

@@ -1,5 +1,10 @@
 body{
     background: #282828;
+    font-family: 'Abel';
+}
+
+.aboutBody {
+
 }
 
 .header{
@@ -8,7 +13,7 @@ body{
     color: white;
     text-align: center;
     padding: 2px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Abel';
 }
 
 .header a{
@@ -30,13 +35,15 @@ h1 {
     background: #181818;
     width: 400px;
     margin-top: 50px;
+    border-radius: 20px;
+    font-family: 'Abel';
 }
 
 .about p {
     margin: auto;
     color: white;
     font-size: 20px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Abel';
     padding: 10px;
 }
 
@@ -61,13 +68,14 @@ h1 {
 }
 
 #searchInput {
-    width: 300px;
+    width: 500px;
     height: 50px;
     background: transparent;
     border: none;
     color: white;
     padding-left: 5px;
     font-size: 20px;
+    font-family: 'Abel';
 }
 
 #searchButton:focus,textarea:focus, input:focus{
@@ -89,7 +97,7 @@ h1 {
 }
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Abel';
     font-size: 20px;
   }
 
@@ -118,7 +126,7 @@ h1 {
     border: none;
     font-size: 30px;
     margin-top: -5px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Abel';
     font-weight: 100;
 }
 
@@ -129,16 +137,19 @@ h1 {
     font-size: 20px;
     height: 50px;
     padding-top: 3px;
+    font-family: 'Abel';
 }
 
 .alcoholic {
     color: red;
     text-align: center;
     letter-spacing: 10px;
+    font-family: 'Abel';
 }
 
 .alcoholFree {
     color: greenyellow;
     text-align: center;
     letter-spacing: 15px;
+    font-family: 'Abel';
 }
