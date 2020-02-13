@@ -7,7 +7,24 @@ let Calls = (function(){
   .then(response => response.json())
   .then(json => {
       var drinks = json.drinks;
-      console.log(drinks);
+      document.getElementById("resultsDiv").innerHTML = "";
+      if( drinks == null  ){
+          var p = document.createElement("p");
+          var img = styleImg("brokenSearch.png","200","200");
+          p.innerHTML = "OOPS! We couldnt't find that drink :(";
+          p.classList.add("wrongSearch");
+          document.getElementById("resultsDiv").appendChild(p);
+          document.getElementById("resultsDiv").appendChild(img);
+      }
+      else if(searchInput == ""){
+        var p = document.createElement("p");
+        var img = styleImg("brokenSearch.png","200","200");
+        p.innerHTML = "OOPS! You haven't searched for anything :(";
+        p.classList.add("wrongSearch");
+        document.getElementById("resultsDiv").appendChild(p);
+        document.getElementById("resultsDiv").appendChild(img);
+      }
+      else{
       for( var i = 0; i < drinks.length; i++ ){
             var newDiv = document.createElement("div");
             var p = document.createElement("p");
@@ -23,6 +40,7 @@ let Calls = (function(){
             document.getElementById("resultsDiv").appendChild(newDiv);
 
       }
+    }
   })
 
     }

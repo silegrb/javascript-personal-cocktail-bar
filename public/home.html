@@ -11,10 +11,10 @@
         </div>
         <div class="searchWrapper">
             <div class="searchContainer">
-                <form class="searchForm">
-                   <input id="searchInput" type="text" placeholder="Search for a coctail" name="search">
-                    <button id="searchButton" type="submit"><img id="searchIcon" src="searchIcon.png"></button>
-               </form>
+                <div class="searchForm">
+                   <input onchange="saveInput()" id="searchInput" type="text" placeholder="Search for a coctail" name="search">
+                    <button id="searchButton" type="submit" onclick="clickSearch()"><img id="searchIcon" src="searchIcon.png"></button>
+                </div>
              </div>
              <div id="resultsDiv" class="resultsDiv">
                 
