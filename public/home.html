@@ -4,17 +4,29 @@
         <title>CBS</title>
         <link rel="stylesheet" href="app.css">
         <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet'>
+        <link rel="icon" type="image/ico" href="cocktail.png" />
     </head>
     <body>
         <div class="header">
-            <h1>Coctail Bar Softhouse</h1>
+            <h1>Cocktail Bar Softhouse</h1>
             <a href="home.html">Home</a> | <a href="favourites.html">Favourites</a> | <a href="about.html">About</a>
         </div>
         <div class="searchWrapper">
             <div class="searchContainer">
+                
                 <div class="searchForm">
-                   <input onchange="saveInput()" id="searchInput" type="text" placeholder="Search for a coctail" name="search">
-                    <button id="searchButton" type="submit" onclick="clickSearch()"><img id="searchIcon" src="searchIcon.png"></button>
+                    <div class="dropdown">
+                        <button id="menuButton" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" onclick="myFunction()"><img id="menu" src="menu.png"/></button>  
+                        <div class="dropdown-content">
+                            <p>Search for cocktails</p>
+                            <p>Search for cocktails by ingredient</p>
+                            <p>Search for only alcoholic cocktails</p>
+                            <p>Search for only alcohol free cocktails</p>
+                            <p>List 10 random cocktails</p>
+                          </div>
+                    </div>
+                        <input onchange="saveInput()" id="searchInput" type="text" placeholder="Search for cocktails" name="search">
+                    <button id="searchButton" onclick="clickSearch()"><img id="searchIcon" src="searchIcon.png"></button>
                 </div>
              </div>
              <div id="resultsDiv" class="resultsDiv">

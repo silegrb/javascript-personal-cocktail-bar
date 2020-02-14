@@ -5,8 +5,7 @@ function saveInput(){
 }
 
 function clickSearch(){
-    Calls.getCoctails(currentInput);
+    Calls.searchForCocktailsByIngredient(currentInput);
     currentInput = "";
-    document.getElementById("searchInput").value = "";
-    
+    document.getElementById("searchInput").value = ""; 
 }

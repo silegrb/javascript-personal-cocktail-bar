@@ -4,7 +4,7 @@ body{
 }
 
 .aboutBody {
-
+    text-align: center;
 }
 
 .header{
@@ -32,6 +32,7 @@ h1 {
 
 .about {
     margin:auto;
+    text-align: left;
     background: #181818;
     width: 400px;
     margin-top: 50px;
@@ -68,17 +69,17 @@ h1 {
 }
 
 #searchInput {
-    width: 500px;
+    width: 400px;
     height: 50px;
     background: transparent;
     border: none;
     color: white;
-    padding-left: 5px;
+    padding-left: 15px;
     font-size: 20px;
     font-family: 'Abel';
 }
 
-#addToFavourites:focus,#searchButton:focus,textarea:focus, input:focus{
+#addToFavourites:focus,#searchButton:focus,textarea:focus, input:focus, #menuButton:focus{
     outline: none;
 }
 
@@ -89,10 +90,9 @@ h1 {
     float: right;
 }
 
-#searchButton:hover {
+#searchButton:hover, #menuButton:hover {
     background: grey;
     border: none;
-    float: right;
     border-radius: 20px;
 }
 
@@ -162,11 +162,6 @@ h1 {
     border: none;
 }
 
-#drop {
-    width: 20px;
-    height: 20px;
-}
-
 #addToFavourites {
     background: #3cd070;
     color: white;
@@ -182,3 +177,53 @@ h1 {
     box-shadow:
     0 0 25px rgba(255, 255, 255, 0.3);
 }
+
+#coctailIcon{
+    width: 250px;
+    height: 250px;
+    text-align: center;
+}
+
+#menu {
+    width: 50px;
+    height: 50px;
+    
+}
+
+#menuButton {
+    border:  none;
+    border-radius: 20px;
+    float: left;
+    background: transparent;
+}
+
+.dropdown {
+    display: inline;
+}
+  
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #181818;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    margin-top: 55px;
+  }
+  
+  .dropdown-content p {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content p:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .dropdown:hover .dropdown-content {display: block;}
+
+
+  
