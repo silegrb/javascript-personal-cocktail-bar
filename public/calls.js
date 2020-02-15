@@ -187,7 +187,8 @@ function generateAlcoholAlertParagraph(alcoholSign){
 function generateAddToFavouritesButtonDiv(){
     var buttonDiv = document.createElement("div");
     var addToFavouritesButton = document.createElement("button");
-    addToFavouritesButton.id = "addToFavourites";
+    addToFavouritesButton.setAttribute("id","addToFavourites");
+    addToFavouritesButton.setAttribute("onclick","clickAddToFavourites(this.parentElement.parentElement)");
     addToFavouritesButton.innerHTML = "ADD TO FAVOURITES";
     buttonDiv.appendChild(addToFavouritesButton);
     return buttonDiv;

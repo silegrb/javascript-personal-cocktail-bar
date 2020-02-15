@@ -50,3 +50,46 @@ function pickAnOption(pickedOption){
         default:
     }
 }
+
+function clickAddToFavourites(clickedDrinkDiv){
+    var notificationsTable = document.getElementById("nofitications");
+    
+    var newRow = notificationsTable.insertRow(notificationsTable.rows.length);
+    
+    var cellNotificationMessage = newRow.insertCell(0);
+    cellNotificationMessage.innerHTML = "'" + clickedDrinkDiv.children[0].innerHTML + "'" + " ADDED TO FAVOURITES!";
+    cellNotificationMessage.style.color = "white";
+    var cellCancelImage = newRow.insertCell(1);
+
+    var cancelButton = document.createElement("button");
+    cancelButton.setAttribute("id","cancelButton");
+    cancelButton.setAttribute("onclick","clickRemoveNotificationButton(this.parentElement.parentElement)");
+
+    var cancelImage = document.createElement("img");
+    cancelImage.setAttribute("src","cancel.png");
+    cancelImage.setAttribute("id","cancel");
+
+    cancelButton.appendChild(cancelImage);
+
+    cellCancelImage.appendChild(cancelButton);
+    
+}
+
+function clickRemoveNotificationButton(notification) {
+    console.log(notification);
+    notification.remove();
+}
+
+function fadeIn(el){
+    el.className = "";
+    el.classList.add('show');
+    console.log(el.className);
+  }
+  
+  function fadeOut(el){
+    el.className = "";
+    el.classList.add('hide');
+    console.log(el.className);
+
+  }
+  

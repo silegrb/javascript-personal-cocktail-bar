@@ -79,7 +79,7 @@ h1 {
     font-family: 'Abel';
 }
 
-#addToFavourites:focus,#searchButton:focus,textarea:focus, input:focus, #menuButton:focus{
+#addToFavourites:focus,#searchButton:focus,textarea:focus, input:focus, #menuButton:focus, #cancelButton:focus{
     outline: none;
 }
 
@@ -225,5 +225,53 @@ h1 {
   
   .dropdown:hover .dropdown-content {display: block;}
 
+  .notificationsCenter {
+    background: #181818;
+    border-radius: 20px;
+    padding: 5px;
+    opacity: 1;
+    display: block;
+    margin-right: 20px;
+  }
+  
+  .hide {
+    background: #181818;
+    border-radius: 20px;
+    padding: 5px;
+    opacity: 0;
+    display: flex;
+    transition: opacity 1000ms;
+    margin-right: 20px;
+  }
 
+  #bell{
+      width: 70px;
+      height: 70px;
+  }
+
+  #cancel {
+    width: 30px;
+    height: 30px;
+  }
+
+  #cancelButton {
+      background: transparent;
+      border: none;
+      border-radius: 50%;
+  }
+
+  .rightDiv {
+      float: right;
+      margin-top: 5vh;
+  }
+
+  #notificationMessage {
+      font-size: 23px;
+      font-family: 'Abel';
+      color: white;
+  }
+
+  #notificationsHeader {
+    display: flex;
+  }
   
