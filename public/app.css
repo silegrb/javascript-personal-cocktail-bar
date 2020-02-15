@@ -88,7 +88,8 @@ h1 {
 textarea:focus,
 input:focus,
 #menuButton:focus,
-#cancelButton:focus {
+#cancelButton:focus,
+#shakeButton:focus {
     outline: none;
 }
 
@@ -261,11 +262,6 @@ th {
     border-radius: 50%;
 }
 
-.rightDiv {
-    margin-top: 5vh;
-    display: flex;
-}
-
 #notificationMessage {
     font-size: 25px;
     font-family: 'Abel';
@@ -278,6 +274,7 @@ th {
 }
 
 #shaker {
+    margin-top: 5vh;
     border: none;
     border-radius: 20px;
     margin-right: 10px;
@@ -291,4 +288,25 @@ th {
 
 #notificationWrapper {
     background: transparent;
+    margin-top: 5vh;
+}
+
+#shakeButton {
+    font-family: 'Abel';
+    width: 200px;
+    font-size: 25px;
+    border: 1px solid #3cd070;
+    border-radius: 10px;
+    color: #3cd070;
+    margin-top: 10px;
+    background: rgba(0, 0, 0, 0.2);
+    margin-left: 170px;
+}
+
+#shakeButton:hover {
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+#shakeButton:active {
+    transform: translateY(5px);
 }

@@ -3,12 +3,12 @@ window.onload = Calls.shakeCocktail();
 var currentInput = "";
 var currentSearchMode = 1;
 
-function saveInput(){
+function saveInput() {
     currentInput += document.getElementById("searchInput").value;
 }
 
-function clickSearch(){
-    switch(currentSearchMode){
+function clickSearch() {
+    switch (currentSearchMode) {
         case 1:
             Calls.searchCocktails(currentInput);
             break;
@@ -16,10 +16,10 @@ function clickSearch(){
             Calls.searchForCocktailsByIngredient(currentInput);
             break;
         case 3:
-            Calls.searchForFilteredDrinks(currentInput,1);
+            Calls.searchForFilteredDrinks(currentInput, 1);
             break;
         case 4:
-            Calls.searchForFilteredDrinks(currentInput,0);
+            Calls.searchForFilteredDrinks(currentInput, 0);
             break;
         case 5:
             Calls.listTenRandomCocktails();
@@ -28,24 +28,24 @@ function clickSearch(){
         default:
     }
     currentInput = "";
-    document.getElementById("searchInput").value = ""; 
+    document.getElementById("searchInput").value = "";
 }
 
-function pickAnOption(pickedOption){
+function pickAnOption(pickedOption) {
     currentSearchMode = pickedOption;
     var searchBar = document.getElementById("searchInput");
-    switch(pickedOption){
+    switch (pickedOption) {
         case 1:
-            searchBar.setAttribute("placeholder","Search for cocktails");
+            searchBar.setAttribute("placeholder", "Search for cocktails");
             break;
         case 2:
-            searchBar.setAttribute("placeholder","Search for cocktails by ingredient");
+            searchBar.setAttribute("placeholder", "Search for cocktails by ingredient");
             break;
         case 3:
-            searchBar.setAttribute("placeholder","Search for only alcoholic cocktails");
+            searchBar.setAttribute("placeholder", "Search for only alcoholic cocktails");
             break;
         case 4:
-            searchBar.setAttribute("placeholder","Search for only alcohol free cocktails");
+            searchBar.setAttribute("placeholder", "Search for only alcohol free cocktails");
             break;
         case 5:
             clickSearch();
@@ -54,28 +54,28 @@ function pickAnOption(pickedOption){
     }
 }
 
-function clickAddToFavourites(clickedDrinkDiv){
+function clickAddToFavourites(clickedDrinkDiv) {
     var notificationsTable = document.getElementById("nofitications");
-    
+
     var newRow = notificationsTable.insertRow(notificationsTable.rows.length);
-    
+
     var cellNotificationMessage = newRow.insertCell(0);
     cellNotificationMessage.innerHTML = "'" + clickedDrinkDiv.children[0].innerHTML + "'" + " ADDED TO FAVOURITES!";
     cellNotificationMessage.style.color = "white";
     var cellCancelImage = newRow.insertCell(1);
 
     var cancelButton = document.createElement("button");
-    cancelButton.setAttribute("id","cancelButton");
-    cancelButton.setAttribute("onclick","clickRemoveNotificationButton(this.parentElement.parentElement)");
+    cancelButton.setAttribute("id", "cancelButton");
+    cancelButton.setAttribute("onclick", "clickRemoveNotificationButton(this.parentElement.parentElement)");
 
     var cancelImage = document.createElement("img");
-    cancelImage.setAttribute("src","cancel.png");
-    cancelImage.setAttribute("id","cancel");
+    cancelImage.setAttribute("src", "cancel.png");
+    cancelImage.setAttribute("id", "cancel");
 
     cancelButton.appendChild(cancelImage);
 
     cellCancelImage.appendChild(cancelButton);
-    
+
 }
 
 function clickRemoveNotificationButton(notification) {
@@ -83,16 +83,6 @@ function clickRemoveNotificationButton(notification) {
     notification.remove();
 }
 
-function fadeIn(el){
-    el.className = "";
-    el.classList.add('show');
-    console.log(el.className);
-  }
-  
-  function fadeOut(el){
-    el.className = "";
-    el.classList.add('hide');
-    console.log(el.className);
-
-  }
-  
+function shakeACocktail() {
+    Calls.shakeAnotherCocktail();
+}
