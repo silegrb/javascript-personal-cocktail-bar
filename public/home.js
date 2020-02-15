@@ -1,5 +1,8 @@
+window.onload = Calls.shakeCocktail();
+
 var currentInput = "";
 var currentSearchMode = 1;
+
 function saveInput(){
     currentInput += document.getElementById("searchInput").value;
 }

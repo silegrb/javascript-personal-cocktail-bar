@@ -1,3 +1,4 @@
+
 let Calls = (function(){
 
     var favouriteDrinks = []
@@ -129,11 +130,40 @@ let Calls = (function(){
         
     }
 
+    function shakeCocktailImpl(){
+        var shaker = document.getElementById("shaker");
+        shaker.innerHTML = "";
+
+        fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php').
+        then(response => response.json()).
+        then(json => {
+            var drink = json.drinks[0];
+            var drinkDiv = document.createElement("div");
+            drinkDiv.style.setProperty("padding","15px");
+            drinkDiv.style.setProperty("background","rgba(0, 0, 0, 0.2)");
+            drinkDiv.style.setProperty("border-radius","20px");
+    
+            var cocktailName = generateCocktailName( drink.strDrink );
+            var alcoholAlertParagraph = generateAlcoholAlertParagraph( drink.strAlcoholic );
+            var cocktailInfoDiv = generateCocktailInfoDiv(drink);
+            var addToFavouritesButtonDiv = generateAddToFavouritesButtonDiv();
+    
+            drinkDiv.appendChild(cocktailName);
+            drinkDiv.appendChild(alcoholAlertParagraph);
+            drinkDiv.appendChild(cocktailInfoDiv);
+            drinkDiv.appendChild(addToFavouritesButtonDiv);
+
+            shaker.appendChild(drinkDiv);
+        });
+        //https://www.thecocktaildb.com/api/json/v1/1/random.php
+    }
+
 return {
     searchCocktails: searchCocktailsImpl,
     searchForCocktailsByIngredient: searchForCocktailsByIngredientImpl,
     searchForFilteredDrinks: searchForFilteredDrinksImpl,
-    listTenRandomCocktails: listTenRandomCocktailsImpl
+    listTenRandomCocktails: listTenRandomCocktailsImpl,
+    shakeCocktail: shakeCocktailImpl
 }
 
 }())
