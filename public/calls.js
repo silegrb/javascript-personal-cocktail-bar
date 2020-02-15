@@ -1,5 +1,3 @@
-var DRINKS = [];
-
 let Calls = (function(){
 
     var favouriteDrinks = []
@@ -15,7 +13,7 @@ let Calls = (function(){
             document.getElementById("resultsDiv").innerHTML = "";
       
             if( drinks == null  ){
-                var noSearchResultDiv = generateErrorDiv("OOPS! We couldnt't find that drink :(","brokenSearch.png");
+                var noSearchResultDiv = generateErrorDiv("OOPS! We couldnt't find any drinks :(","brokenSearch.png");
                 document.getElementById("resultsDiv").appendChild(noSearchResultDiv);
             }
             else if(searchInput == ""){
@@ -42,12 +40,11 @@ let Calls = (function(){
 
             var drinks = json.drinks;
 
-
             //Next line will clear complete div, so they don't append on next search...
             document.getElementById("resultsDiv").innerHTML = "";
       
             if( drinks == null && searchInput != ""  ){
-                var noSearchResultDiv = generateErrorDiv("OOPS! We couldnt't find that drink :(","brokenSearch.png");
+                var noSearchResultDiv = generateErrorDiv("OOPS! We couldnt't find any drinks with that ingredient :(","brokenSearch.png");
                 document.getElementById("resultsDiv").appendChild(noSearchResultDiv);
             }
             else if(searchInput == ""){
@@ -55,23 +52,88 @@ let Calls = (function(){
                 document.getElementById("resultsDiv").appendChild(noSearchInputDiv);
             }
             else {
+                var drinksWithSpecifiedIngredient = [];
                 const promises = drinks.map(drink => 
                     fetch("https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + drink.idDrink).
                     then(response => response.json()).
                     then(json => {
-                    DRINKS.push(json.drinks[0]);
+                        drinksWithSpecifiedIngredient.push(json.drinks[0]);
                 }));
                 Promise.all(promises).then(function(ok){
-                    fillResultsDiv(DRINKS);
+                    fillResultsDiv(drinksWithSpecifiedIngredient);
                 });
             }
             
         })
     }
 
+    function searchForFilteredDrinksImpl(searchInput,isAlcoholic){
+        fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=' + searchInput)
+        .then(response => response.json())
+        .then(json => {
+
+            var drinks = json.drinks;
+
+            //Next line will clear complete div, so they don't append on next search...
+            document.getElementById("resultsDiv").innerHTML = "";
+      
+            if( drinks == null  ){
+                var alcoholicSign = "";
+                if( isAlcoholic ) alcoholicSign = "alcoholic";
+                else alcoholicSign = "alcohol free";
+                var noSearchResultDiv = generateErrorDiv("OOPS! We couldnt't find any " + alcoholicSign + " drinks :(","brokenSearch.png");
+                document.getElementById("resultsDiv").appendChild(noSearchResultDiv);
+            }
+            else if(searchInput == ""){
+                var noSearchInputDiv = generateErrorDiv("OOPS! Empty search :(","brokenSearch.png");
+                document.getElementById("resultsDiv").appendChild(noSearchInputDiv);
+            }
+            else{
+                //1 is for alcoholic drinks, 0 is for alcohol free (isAlcoholic parameter value)
+                if( isAlcoholic ){
+                    for( var i = 0; i < drinks.length; i++ )
+                        if( drinks[i].strAlcoholic != "Alcoholic" ){
+                            drinks.splice(i,1);
+                            i--;
+                        }
+                }
+                else{
+                    for( var i = 0; i < drinks.length; i++ )
+                    if( drinks[i].strAlcoholic == "Alcoholic" ){
+                        drinks.splice(i,1);
+                        i--;
+                    }
+                }
+                fillResultsDiv(drinks);
+            }
+        })
+    }
+
+    function listTenRandomCocktailsImpl(){
+
+            //Next line will clear complete div, so they don't append on next search...
+            document.getElementById("resultsDiv").innerHTML = "";
+        
+           // https://www.thecocktaildb.com/api/json/v1/1/random.php
+           var randomDrinks = [];
+           var cheatLoop = (new Array(10)).fill(0);
+           const promises = cheatLoop.map(drink => 
+               fetch("https://www.thecocktaildb.com/api/json/v1/1/random.php").
+               then(response => response.json()).
+               then(json => {
+                randomDrinks.push(json.drinks[0]);
+           }));
+           Promise.all(promises).then(function(ok){
+               fillResultsDiv(randomDrinks);
+           });
+        
+    }
+
 return {
     searchCocktails: searchCocktailsImpl,
-    searchForCocktailsByIngredient: searchForCocktailsByIngredientImpl
+    searchForCocktailsByIngredient: searchForCocktailsByIngredientImpl,
+    searchForFilteredDrinks: searchForFilteredDrinksImpl,
+    listTenRandomCocktails: listTenRandomCocktailsImpl
 }
 
 }())
@@ -218,20 +280,4 @@ function fillResultsDiv(drinks) {
 
         document.getElementById("resultsDiv").appendChild(drinkDiv);
   }
-}
-
-function test( drinks ){
-    return new Promise(function(resolve,reject){
-       
-        for( var i = 0; i < drinks.length; i++ ){
-            fetch('https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=' + drinks[i].idDrink).
-            then(response => response.json()).
-            then(json => {
-                DRINKS.push(json.drinks[0]);
-            });
-
-          
-        }
-        resolve(true)
-    })
 }

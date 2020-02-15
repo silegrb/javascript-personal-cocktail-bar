@@ -16,13 +16,13 @@
                 
                 <div class="searchForm">
                     <div class="dropdown">
-                        <button id="menuButton" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" onclick="myFunction()"><img id="menu" src="menu.png"/></button>  
+                        <button id="menuButton" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><img id="menu" src="menu.png"/></button>  
                         <div class="dropdown-content">
-                            <p>Search for cocktails</p>
-                            <p>Search for cocktails by ingredient</p>
-                            <p>Search for only alcoholic cocktails</p>
-                            <p>Search for only alcohol free cocktails</p>
-                            <p>List 10 random cocktails</p>
+                            <p onclick="pickAnOption(1)" >Search for cocktails</p>
+                            <p onclick="pickAnOption(2)">Search for cocktails by ingredient</p>
+                            <p onclick="pickAnOption(3)">Search for only alcoholic cocktails</p>
+                            <p onclick="pickAnOption(4)">Search for only alcohol free cocktails</p>
+                            <p onclick="pickAnOption(5)">List 10 random cocktails</p>
                           </div>
                     </div>
                         <input onchange="saveInput()" id="searchInput" type="text" placeholder="Search for cocktails" name="search">
