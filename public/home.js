@@ -60,7 +60,10 @@ function clickAddToFavourites(clickedDrinkDiv) {
     var newRow = notificationsTable.insertRow(notificationsTable.rows.length);
 
     var cellNotificationMessage = newRow.insertCell(0);
-    cellNotificationMessage.innerHTML = "'" + clickedDrinkDiv.children[0].innerHTML + "'" + " ADDED TO FAVOURITES!";
+    var drinkName = clickedDrinkDiv.children[0];
+    if (drinkName.tagName == "DIV") drinkName = drinkName.children[2];
+    drinkName = drinkName.innerHTML;
+    cellNotificationMessage.innerHTML = "'" + drinkName + "'" + " ADDED TO FAVOURITES!";
     cellNotificationMessage.style.color = "white";
     var cellCancelImage = newRow.insertCell(1);
 
@@ -76,10 +79,34 @@ function clickAddToFavourites(clickedDrinkDiv) {
 
     cellCancelImage.appendChild(cancelButton);
 
+    var jsonDrink = {
+
+    };
+
+    jsonDrink.name = clickedDrinkDiv.children[0].innerHTML;
+    jsonDrink.isAlcoholic = (clickedDrinkDiv.children[1].innerHTML == "ALCOHOLIC");
+    jsonDrink.imageSource = clickedDrinkDiv.children[2].children[0].src;
+    jsonDrink.description = clickedDrinkDiv.children[2].children[1].children[0].innerHTML;
+
+    var ingredientsTable = clickedDrinkDiv.children[2].children[1].children[1];
+    var ingredientsArray = [];
+    var measuresArray = [];
+
+    for (var i = 0; i < ingredientsTable.rows.length; i++) {
+        var row = ingredientsTable.rows[i];
+        ingredientsArray.push(row.cells[1].innerHTML);
+        if (typeof row.cells[2] != "undefined") measuresArray.push(row.cells[2].innerHTML);
+        else measuresArray.push("undefined");
+    }
+
+    jsonDrink.ingredients = ingredientsArray;
+    jsonDrink.measures = measuresArray;
+
+    Calls.writeFavouriteCocktailsFile(jsonDrink);
+
 }
 
 function clickRemoveNotificationButton(notification) {
-    console.log(notification);
     notification.remove();
 }
 
