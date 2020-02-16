@@ -53,5 +53,12 @@ app.post("/addFavourite", function(req, res) {
     });
 });
 
+app.post("/refreshFavourites", function(req, res) {
+    var request = req.body;
+    fs.writeFile('favourites.json', JSON.stringify(request), function(err) {
+        if (err) throw err;
+    });
+    res.json(JSON.stringify(request));
+});
 
 app.listen(3000);

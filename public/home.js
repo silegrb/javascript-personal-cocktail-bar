@@ -84,9 +84,8 @@ function clickAddToFavourites(clickedDrinkDiv) {
     jsonDrink.name = drinkName;
     jsonDrink.isAlcoholic = (clickedDrinkDiv.children[1].innerHTML == "ALCOHOLIC");
     jsonDrink.imageSource = clickedDrinkDiv.children[2].children[0].src;
-    var str = clickedDrinkDiv.children[2].children[1].children[0].innerHTML
+    var str = clickedDrinkDiv.children[2].children[1].children[0].innerHTML;
     var res = str.replace(/<br>/g, "");
-    console.log(res);
     jsonDrink.description = res;
     var ingredientsTable = clickedDrinkDiv.children[2].children[1].children[1];
     var ingredientsArray = [];

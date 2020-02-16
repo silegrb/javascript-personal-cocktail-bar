@@ -246,7 +246,6 @@ let Calls = (function() {
             var descriptionParagraph = cocktailInfoDiv.children[1].children[0];
             descriptionParagraph.setAttribute("id", "descriptionParagraph");
             descriptionParagraph.setAttribute("contenteditable", "true");
-            descriptionParagraph.setAttribute("onfocusout", "refreshFavourites()");
             descriptionParagraph.style.setProperty("padding", "10px");
             var editButton = generateButton(true);
 
@@ -268,6 +267,28 @@ let Calls = (function() {
         }
     }
 
+    function getFavouriteDrinksImpl() {
+        return favouriteDrinks;
+    }
+
+    function saveChangesImpl(data) {
+        var ajax = new XMLHttpRequest();
+        ajax.onreadystatechange = function() {
+            if (ajax.readyState == 4 && ajax.status == 200) {
+                var response = JSON.parse(ajax.responseText);
+                favouriteDrinks = response.favourites;
+            }
+            if (ajax.readyState == 4 && ajax.status == 404)
+                alert("Error");
+        }
+        ajax.open("POST", "refreshFavourites", true);
+        ajax.setRequestHeader("Content-Type", "application/json");
+        console.log(data);
+        ajax.send(JSON.stringify({
+            favourites: data
+        }));
+    }
+
     return {
         searchCocktails: searchCocktailsImpl,
         searchForCocktailsByIngredient: searchForCocktailsByIngredientImpl,
@@ -277,7 +298,9 @@ let Calls = (function() {
         shakeAnotherCocktail: shakeAnotherCocktailImpl,
         writeFavouriteCocktailsFile: writeFavouriteCocktailsFileImpl,
         loadFavouriteDrinks: loadFavouriteDrinksImpl,
-        fillFavouriteDrinks: fillFavouriteDrinksImpl
+        fillFavouriteDrinks: fillFavouriteDrinksImpl,
+        getFavouriteDrinks: getFavouriteDrinksImpl,
+        saveChanges: saveChangesImpl
     }
 
 }())
@@ -362,7 +385,7 @@ function generateButton(twoButtons) {
         var cancelButton = document.createElement("button");
         cancelButton.setAttribute("id", "cancelEdittingButton");
         cancelButton.innerHTML = "CANCEL";
-        cancelButton.setAttribute("onclick", "clickCancelButton()");
+        cancelButton.setAttribute("onclick", "clickCancelButton(this.parentElement.parentElement)");
         cancelButton.style.setProperty("margin", "10px");
 
 
@@ -433,13 +456,11 @@ function generateCocktailDescription(drink, isOnFavourite, breakSize, cocktailDe
 
         var cellIngredient = row.insertCell(1);
         cellIngredient.setAttribute("contenteditable", "true");
-        cellIngredient.setAttribute("onfocusout", "refreshFavourites()");
 
         cellIngredient.innerHTML = drink["strIngredient" + counter.toString()];
         cellIngredient.style.fontWeight = "bold";
         var cellMeasure = row.insertCell(2);
         cellMeasure.setAttribute("contenteditable", "true");
-        cellMeasure.setAttribute("onfocusout", "refreshFavourites()");
         cellMeasure.innerHTML = "";
         if (drink["strMeasure" + counter.toString()] != null)
             cellMeasure.innerHTML = drink["strMeasure" + counter.toString()];

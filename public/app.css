@@ -358,7 +358,7 @@ th {
 }
 
 .welcomeDiv {
-    display: flex;
+    display: block;
     margin: auto;
     width: 1000px;
     margin-top: 5vh;
@@ -375,6 +375,13 @@ th {
     color: white;
     margin-top: 0.2em;
     margin-left: 10px;
+}
+
+#instructionsParagraph {
+    text-align: center;
+    font-size: 25px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: -0.5em;
 }
 
 #descriptionParagraph {
@@ -409,6 +416,7 @@ th {
 
 #ingredientsTableFavs tr {
     border-bottom: 3px solid #282828;
+    transition: 1s;
 }
 
 #ingredientsTableFavs tr:last-child {
