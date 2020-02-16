@@ -344,3 +344,77 @@ th {
     height: 25px;
     margin-top: -5px;
 }
+
+.resultsDivFav {
+    width: 80vw;
+    border: none;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    padding-left: 3px;
+    padding-right: 7px;
+    margin: auto;
+}
+
+.welcomeDiv {
+    display: flex;
+    margin: auto;
+    width: 1000px;
+    margin-top: 5vh;
+}
+
+#heartImage {
+    float: left;
+    width: 70px;
+    height: 70px;
+}
+
+#welcomeParagraph {
+    font-size: 50px;
+    color: white;
+    margin-top: 0.2em;
+    margin-left: 10px;
+}
+
+#descriptionParagraph {
+    background: #181818;
+    border-radius: 20px;
+    outline: none;
+    padding: 10px;
+    width: 30vw;
+    transition: 1s;
+}
+
+#descriptionParagraph:focus {
+    background: #3cd070;
+    width: 33vw;
+    transition: 1s;
+}
+
+#ingredientsTableFavs {
+    background: #181818;
+    border-radius: 20px;
+    margin-left: 50px;
+    margin-top: 25px;
+    font-size: 20px;
+    border-collapse: collapse;
+}
+
+#ingredientsTableFavs td {
+    padding: 10px;
+    transition: 1s;
+    border-radius: 10px;
+}
+
+#ingredientsTableFavs tr {
+    border-bottom: 3px solid #282828;
+}
+
+#ingredientsTableFavs tr:last-child {
+    border-bottom: none;
+}
+
+#ingredientsTableFavs td:focus {
+    background: #3cd070;
+    transition: 1s;
+    outline: none;
+}
