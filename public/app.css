@@ -89,7 +89,9 @@ textarea:focus,
 input:focus,
 #menuButton:focus,
 #cancelButton:focus,
-#shakeButton:focus {
+#shakeButton:focus,
+#saveButton:focus,
+#cancelEdittingButton:focus {
     outline: none;
 }
 
@@ -380,13 +382,13 @@ th {
     border-radius: 20px;
     outline: none;
     padding: 10px;
-    width: 30vw;
+    width: 25vw;
     transition: 1s;
 }
 
 #descriptionParagraph:focus {
     background: #3cd070;
-    width: 33vw;
+    width: 27vw;
     transition: 1s;
 }
 
@@ -417,4 +419,52 @@ th {
     background: #3cd070;
     transition: 1s;
     outline: none;
+}
+
+#cocktailName {
+    margin: auto;
+    width: 70vw;
+    text-align: center;
+    font-size: 50px;
+    transition: 1s;
+}
+
+#cocktailName:focus {
+    outline: none;
+    font-size: 60px;
+    transition: 1s;
+    background: rgba(60, 208, 112, 0.7);
+    border-radius: 20px;
+}
+
+#saveButton {
+    width: 15vw;
+    font-size: 25px;
+    border-radius: 20px;
+    color: white;
+    background: #3cd070;
+    border: none;
+    font-family: 'Abel';
+}
+
+#saveButton:active {
+    outline: none;
+    transform: translateY(3px);
+    background: rgba(30, 208, 112, 0.7);
+}
+
+#cancelEdittingButton {
+    width: 15vw;
+    font-size: 25px;
+    border-radius: 20px;
+    color: white;
+    background: rgba(240, 52, 52, 1);
+    border: none;
+    font-family: 'Abel';
+}
+
+#cancelEdittingButton:active {
+    outline: none;
+    transform: translateY(3px);
+    background: rgba(200, 52, 52, 0.7);
 }
