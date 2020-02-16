@@ -58,7 +58,7 @@ app.post("/refreshFavourites", function(req, res) {
     fs.writeFile('favourites.json', JSON.stringify(request), function(err) {
         if (err) throw err;
     });
-    res.json(JSON.stringify(request));
+    res.json(request);
 });
 
 app.listen(3000);

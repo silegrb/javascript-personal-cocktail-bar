@@ -283,7 +283,6 @@ let Calls = (function() {
         }
         ajax.open("POST", "refreshFavourites", true);
         ajax.setRequestHeader("Content-Type", "application/json");
-        console.log(data);
         ajax.send(JSON.stringify({
             favourites: data
         }));
