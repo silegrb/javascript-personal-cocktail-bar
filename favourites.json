@@ -8,13 +8,65 @@
       "ingredients": [
         "Amaretto",
         "Light cream",
-        "New ingredient",
         "New ingredient"
       ],
       "measures": [
         "1/2 oz ",
         "2 oz ",
-        "1 cup",
+        "1 cup"
+      ]
+    },
+    {
+      "name": "ABC",
+      "isAlcoholic": true,
+      "imageSource": "https://www.thecocktaildb.com/images/media/drink/tqpvqp1472668328.jpg",
+      "description": "Layered in a shot glass.",
+      "ingredients": [
+        "Amaretto",
+        "Baileys irish cream",
+        "Cognac"
+      ],
+      "measures": [
+        "1/3 ",
+        "1/3 ",
+        "1/3 "
+      ]
+    },
+    {
+      "name": "Pisco Sour",
+      "isAlcoholic": true,
+      "imageSource": "https://www.thecocktaildb.com/images/media/drink/tsssur1439907622.jpg",
+      "description": "Vigorously shake and strain contents in a cocktail shaker with ice cubes, then pour into glass and garnish with bitters.[1]",
+      "ingredients": [
+        "Pisco",
+        "Lemon juice",
+        "Sugar",
+        "Ice"
+      ],
+      "measures": [
+        "2 oz ",
+        "1 oz ",
+        "1-2 tblsp ",
+        ""
+      ]
+    },
+    {
+      "name": "Nutty Irishman",
+      "isAlcoholic": true,
+      "imageSource": "https://www.thecocktaildb.com/images/media/drink/xspupx1441248014.jpg",
+      "description": "Serve over ice",
+      "ingredients": [
+        "Baileys irish cream",
+        "Frangelico",
+        "Milk",
+        "New ingredient",
+        "New ingredient"
+      ],
+      "measures": [
+        "1 part ",
+        "1 part ",
+        "1 part ",
+        "New measure",
         "New measure"
       ]
     }

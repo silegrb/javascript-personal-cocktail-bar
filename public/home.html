@@ -29,7 +29,7 @@
                             <p onclick="pickAnOption(5)">List 10 random cocktails</p>
                         </div>
                     </div>
-                    <input onchange="saveInput()" id="searchInput" type="text" placeholder="Search for cocktails" name="search">
+                    <input onkeyup="clickEnter(event)" onchange="saveInput()" id="searchInput" type="text" placeholder="Search for cocktails" name="search">
                     <button id="searchButton" onclick="clickSearch()"><img id="searchIcon"
                             src="searchIcon.png"></button>
                 </div>

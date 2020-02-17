@@ -112,3 +112,12 @@ function clickRemoveNotificationButton(notification) {
 function shakeACocktail() {
     Calls.shakeAnotherCocktail();
 }
+
+
+function clickEnter(event) {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        document.getElementById("searchButton").click();
+        console.log("this is it: " + currentInput);
+    }
+}
