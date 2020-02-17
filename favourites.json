@@ -1,1 +1,38 @@
-{ "favourites": [{ "name": "ORGASM BlaBla", "isAlcoholic": true, "imageSource": "https://www.thecocktaildb.com/images/media/drink/vr6kle1504886114.jpg", "description": "Shake all ingredients with ice, strain into a chilled cocktail glass, and serve.", "ingredients": ["Creme de Cacao", "Amaretto", "Triple sec", "Vodka", "Light cream"], "measures": ["1/2 oz white ", "1/2 oz ", "1/2 oz ", "1/2 oz ", "1 oz "] }] }
+{
+  "favourites": [
+    {
+      "name": "Almond Joy",
+      "isAlcoholic": true,
+      "imageSource": "https://www.thecocktaildb.com/images/media/drink/xutuqs1483388296.jpg",
+      "description": "Shake all ingredients with ice, strain into a cocktail glass, and serve.",
+      "ingredients": [
+        "Amaretto",
+        "Light cream"
+      ],
+      "measures": [
+        "1/2 oz ",
+        "2 oz "
+      ]
+    },
+    {
+      "name": "English Highball",
+      "isAlcoholic": true,
+      "imageSource": "https://www.thecocktaildb.com/images/media/drink/dhvr7d1504519752.jpg",
+      "description": "Pour brandy, gin, and sweet vermouth into a highball glass over ice cubes. Fill with carbonated water. Add the twist of lemon peel, stir, and serve. (Ginger ale may be substituted for carbonated water, if preferred.)",
+      "ingredients": [
+        "Brandy",
+        "Gin",
+        "Sweet Vermouth",
+        "Carbonated water",
+        "Lemon peel"
+      ],
+      "measures": [
+        "3/4 oz ",
+        "3/4 oz ",
+        "3/4 oz ",
+        "",
+        ""
+      ]
+    }
+  ]
+}

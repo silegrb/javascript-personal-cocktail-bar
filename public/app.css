@@ -91,7 +91,8 @@ input:focus,
 #cancelButton:focus,
 #shakeButton:focus,
 #saveButton:focus,
-#cancelEdittingButton:focus {
+#cancelEdittingButton:focus,
+#deleteButton:focus {
     outline: none;
 }
 
@@ -313,7 +314,8 @@ th {
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
 }
 
-#shakeButton:active {
+#shakeButton:active,
+#deleteButton:active {
     transform: translateY(5px);
 }
 
@@ -475,4 +477,11 @@ th {
     outline: none;
     transform: translateY(3px);
     background: rgba(200, 52, 52, 0.7);
+}
+
+#deleteButton {
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    border: none;
 }

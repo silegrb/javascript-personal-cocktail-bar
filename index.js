@@ -44,7 +44,7 @@ app.post("/addFavourite", function(req, res) {
             measures: request.measures
         });
 
-        fs.writeFile('favourites.json', JSON.stringify(favsFile), function(err) {
+        fs.writeFile('favourites.json', JSON.stringify(favsFile, null, 2), function(err) {
             if (err) throw err;
         });
         favsFile.confirmedAdding = "'" + request.name + "' ADDED TO FAVOURITES!";
@@ -55,7 +55,7 @@ app.post("/addFavourite", function(req, res) {
 
 app.post("/refreshFavourites", function(req, res) {
     var request = req.body;
-    fs.writeFile('favourites.json', JSON.stringify(request), function(err) {
+    fs.writeFile('favourites.json', JSON.stringify(request, null, 2), function(err) {
         if (err) throw err;
     });
     res.json(request);
