@@ -7,31 +7,15 @@
       "description": "Shake all ingredients with ice, strain into a cocktail glass, and serve.",
       "ingredients": [
         "Amaretto",
-        "Light cream"
+        "Light cream",
+        "New ingredient",
+        "New ingredient"
       ],
       "measures": [
         "1/2 oz ",
-        "2 oz "
-      ]
-    },
-    {
-      "name": "English Highball",
-      "isAlcoholic": true,
-      "imageSource": "https://www.thecocktaildb.com/images/media/drink/dhvr7d1504519752.jpg",
-      "description": "Pour brandy, gin, and sweet vermouth into a highball glass over ice cubes. Fill with carbonated water. Add the twist of lemon peel, stir, and serve. (Ginger ale may be substituted for carbonated water, if preferred.)",
-      "ingredients": [
-        "Brandy",
-        "Gin",
-        "Sweet Vermouth",
-        "Carbonated water",
-        "Lemon peel"
-      ],
-      "measures": [
-        "3/4 oz ",
-        "3/4 oz ",
-        "3/4 oz ",
-        "",
-        ""
+        "2 oz ",
+        "1 cup",
+        "New measure"
       ]
     }
   ]

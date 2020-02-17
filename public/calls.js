@@ -472,6 +472,36 @@ function generateCocktailDescription(drink, isOnFavourite, breakSize, cocktailDe
     ingredientsTable.id = "ingredientsTable";
 
     var counter = 1;
+
+    if (favouriteDrinksTable) {
+        var headerDrop = document.createElement("th");
+
+        var wrapperDiv = document.createElement("div");
+        wrapperDiv.style.setProperty("display", "flex");
+        var dropImage = document.createElement("img");
+        dropImage.setAttribute("src", "drop.png");
+        dropImage.style.setProperty("width", "30px");
+        dropImage.style.setProperty("height", "30px");
+        dropImage.style.setProperty("margin-left", "10px");
+
+        var ingredientsHeader = document.createElement("p");
+        ingredientsHeader.innerHTML = "Ingredients";
+        ingredientsHeader.style.setProperty("margin-top", "0.3em");
+
+        wrapperDiv.appendChild(dropImage);
+        wrapperDiv.appendChild(ingredientsHeader);
+        headerDrop.appendChild(wrapperDiv);
+
+        var headerAdd = document.createElement("th");
+        headerAdd.setAttribute("colspan", "2");
+        var addButton = generateButton(false);
+        addButton.innerHTML = "ADD";
+        addButton.setAttribute("id", "addButton");
+        addButton.setAttribute("onclick", "clickAddIngredientButton(this.parentElement.parentElement)");
+        headerAdd.appendChild(addButton);
+        ingredientsTable.appendChild(headerDrop);
+        ingredientsTable.appendChild(headerAdd);
+    }
     while (drink["strIngredient" + counter.toString()] != null && drink["strIngredient" + counter.toString()] != "") {
         var row = ingredientsTable.insertRow(ingredientsTable.rows.length);
         if (!favouriteDrinksTable) {

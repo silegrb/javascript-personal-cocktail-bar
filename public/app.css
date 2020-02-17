@@ -315,7 +315,8 @@ th {
 }
 
 #shakeButton:active,
-#deleteButton:active {
+#deleteButton:active,
+#addButton:active {
     transform: translateY(5px);
 }
 
@@ -484,4 +485,12 @@ th {
     height: 50px;
     background: transparent;
     border: none;
+}
+
+#addButton {
+    background: #3cd070;
+    width: 50px;
+    margin: auto;
+    border-radius: 20px;
+    margin-right: 20px;
 }
