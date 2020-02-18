@@ -235,7 +235,7 @@ let Calls = (function() {
             cocktailName.children[0].setAttribute("contenteditable", "true");
             var cancelButton = document.createElement("button");
             cancelButton.setAttribute("id", "removeFavouriteDrinkButton");
-            cancelButton.setAttribute("onclick", "clickDeleteFavouriteCocktail(this.parentElement.parentElement)");
+            cancelButton.setAttribute("onclick", "clickRemoveFavouriteDrinkButton(this.parentElement.parentElement)");
             var cancelImage = document.createElement("img");
             cancelImage.setAttribute("src", "cancel.png");
             cancelImage.setAttribute("id", "cancelIcon");
@@ -536,7 +536,7 @@ function generateCocktailDescription(drink, isOnFavourite, breakSize, cocktailDe
             deleteRowButton.setAttribute("id", "removeFavouriteDrinkButton");
             deleteRowButton.style.setProperty("width", "25px");
             deleteRowButton.style.setProperty("height", "25px");
-            deleteRowButton.setAttribute("onclick", "clickDeleteRowButton(this.parentElement.parentElement)");
+            deleteRowButton.setAttribute("onclick", "clickRemoveIngredientButton(this.parentElement.parentElement)");
 
             var cancelImage = document.createElement("img");
             cancelImage.setAttribute("src", "cancel.png");

@@ -394,12 +394,42 @@ th {
     outline: none;
 }
 
+#titleHeaderDiv {
+    display: flex;
+}
+
+#dropImageHeader {
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+}
+
+#ingredientsHeader {
+    margin-top: 0.3em;
+}
+
 #addIngredientButton {
     background: #3cd070;
     width: 50px;
     margin: auto;
     border-radius: 20px;
     margin-right: 20px;
+}
+
+.cellIngredient {
+    font-weight: bold;
+}
+
+#removeIngredientButton {
+    width: 25px;
+    height: 25px;
+    background: transparent;
+    border: none;
+}
+
+#removeIngredientImage {
+    width: 25px;
+    height: 25px;
 }
 
 #saveButton {
