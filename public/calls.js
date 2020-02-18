@@ -37,16 +37,16 @@ let Calls = (function() {
             .then(json => {
 
                 var drinks = json.drinks;
-
+                var searchResultsDiv = document.getElementById("searchResultsDiv");
                 //Next line will clear complete div, so they don't append on next search...
-                document.getElementById("searchResultsDiv").innerHTML = "";
+                searchResultsDiv.innerHTML = "";
 
                 if (drinks == null && searchInput != "") {
                     var noSearchResultDiv = generateErrorDiv("OOPS! We couldnt't find any drinks with that ingredient :(", "brokenSearch.png");
-                    document.getElementById("searchResultsDiv").appendChild(noSearchResultDiv);
+                    searchResultsDiv.appendChild(noSearchResultDiv);
                 } else if (searchInput == "") {
                     var noSearchInputDiv = generateErrorDiv("OOPS! Empty search :(", "brokenSearch.png");
-                    document.getElementById("searchResultsDiv").appendChild(noSearchInputDiv);
+                    searchResultsDiv.appendChild(noSearchInputDiv);
                 } else {
                     var drinksWithSpecifiedIngredient = [];
                     const promises = drinks.map(drink =>
@@ -57,8 +57,7 @@ let Calls = (function() {
                         fillSearchResultsDiv(drinksWithSpecifiedIngredient);
                     });
                 }
-
-            })
+            });
     }
 
     function searchForFilteredDrinksImpl(searchInput, isAlcoholic) {
@@ -67,19 +66,18 @@ let Calls = (function() {
             .then(json => {
 
                 var drinks = json.drinks;
-
+                var searchResultsDiv = document.getElementById("searchResultsDiv");
                 //Next line will clear complete div, so they don't append on next search...
-                document.getElementById("searchResultsDiv").innerHTML = "";
+                searchResultsDiv.innerHTML = "";
 
                 if (drinks == null) {
-                    var alcoholicSign = "";
+                    var alcoholicSign = "alcohol free";
                     if (isAlcoholic) alcoholicSign = "alcoholic";
-                    else alcoholicSign = "alcohol free";
                     var noSearchResultDiv = generateErrorDiv("OOPS! We couldnt't find any " + alcoholicSign + " drinks :(", "brokenSearch.png");
-                    document.getElementById("searchResultsDiv").appendChild(noSearchResultDiv);
+                    searchResultsDiv.appendChild(noSearchResultDiv);
                 } else if (searchInput == "") {
                     var noSearchInputDiv = generateErrorDiv("OOPS! Empty search :(", "brokenSearch.png");
-                    document.getElementById("searchResultsDiv").appendChild(noSearchInputDiv);
+                    searchResultsDiv.appendChild(noSearchInputDiv);
                 } else {
                     //1 is for alcoholic drinks, 0 is for alcohol free (isAlcoholic parameter value)
                     if (isAlcoholic) {
@@ -97,18 +95,18 @@ let Calls = (function() {
                     }
                     fillSearchResultsDiv(drinks);
                 }
-            })
+            });
     }
 
     function listTenRandomCocktailsImpl() {
 
+        var searchResultsDiv = document.getElementById("searchResultsDiv");
         //Next line will clear complete div, so they don't append on next search...
-        document.getElementById("searchResultsDiv").innerHTML = "";
+        searchResultsDiv.innerHTML = "";
 
-        // https://www.thecocktaildb.com/api/json/v1/1/random.php
         var randomDrinks = [];
         var cheatLoop = (new Array(10)).fill(0);
-        const promises = cheatLoop.map(drink =>
+        const promises = cheatLoop.map(notUsed =>
             fetch("https://www.thecocktaildb.com/api/json/v1/1/random.php").then(response => response.json()).then(json => {
                 randomDrinks.push(json.drinks[0]);
             }));
@@ -119,38 +117,33 @@ let Calls = (function() {
     }
 
     function shakeCocktailImpl() {
-        var shaker = document.getElementById("shakeComponent");
-        shaker.innerHTML = "";
+        var shakeComponent = document.getElementById("shakeComponent");
+        shakeComponent.innerHTML = "";
 
         fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php').
         then(response => response.json()).
         then(json => {
             var drink = json.drinks[0];
-            var drinkDiv = document.createElement("div");
-            drinkDiv.setAttribute("id", "shakedCocktail");
-            drinkDiv.style.setProperty("padding", "15px");
-            drinkDiv.style.setProperty("background", "rgba(0, 0, 0, 0.2)");
-            drinkDiv.style.setProperty("border-radius", "20px");
+            var randomDrinkDiv = document.createElement("div");
+            randomDrinkDiv.setAttribute("id", "randomDrinkDiv");
 
-            var cocktailName = generateBarmansRecommandation(drink.strDrink);
+            var cocktailName = generateBarmansRecommandationTitle(drink.strDrink);
             var alcoholAlertParagraph = generateAlcoholAlertParagraph(drink.strAlcoholic);
-            var cocktailInfoDiv = generateCocktailInfoDiv(drink, false, "180", "200", 40, "15px", false);
-            var addToFavouritesButtonDiv = generateButton(false);
+            var cocktailInfoDiv = generateCocktailInfoDiv(drink, false);
+            var addToFavouritesButtonDiv = generateAddToFavouritesButton();
 
-            drinkDiv.appendChild(cocktailName);
-            drinkDiv.appendChild(alcoholAlertParagraph);
-            drinkDiv.appendChild(cocktailInfoDiv);
-            drinkDiv.appendChild(addToFavouritesButtonDiv);
-
-
+            randomDrinkDiv.appendChild(cocktailName);
+            randomDrinkDiv.appendChild(alcoholAlertParagraph);
+            randomDrinkDiv.appendChild(cocktailInfoDiv);
+            randomDrinkDiv.appendChild(addToFavouritesButtonDiv);
 
             var shakeButton = document.createElement("button");
             shakeButton.innerHTML = "SHAKE";
             shakeButton.setAttribute("id", "shakeButton");
             shakeButton.setAttribute("onclick", "clickShakeButton()");
 
-            shaker.append(drinkDiv);
-            shaker.append(shakeButton);
+            shakeComponent.append(randomDrinkDiv);
+            shakeComponent.append(shakeButton);
         });
     }
 
@@ -161,10 +154,10 @@ let Calls = (function() {
             var drink = json.drinks[0];
             var drinkDiv = document.getElementById("shakedCocktail");
             drinkDiv.innerHTML = "";
-            var cocktailName = generateBarmansRecommandation(drink.strDrink);
+            var cocktailName = generateBarmansRecommandationTitle(drink.strDrink);
             var alcoholAlertParagraph = generateAlcoholAlertParagraph(drink.strAlcoholic);
-            var cocktailInfoDiv = generateCocktailInfoDiv(drink, false, "180", "200", "15px", false);
-            var addToFavouritesButtonDiv = generateButton(false);
+            var cocktailInfoDiv = generateCocktailInfoDiv(drink, false);
+            var addToFavouritesButtonDiv = generateAddToFavouritesButton();
 
             drinkDiv.appendChild(cocktailName);
             drinkDiv.appendChild(alcoholAlertParagraph);
@@ -184,7 +177,6 @@ let Calls = (function() {
                 else
                     cellNotificationMessage.innerHTML = response.confirmedAdding;
                 favouriteDrinks = response.favourites;
-                console.log(favouriteDrinks);
             }
             if (ajax.readyState == 4 && ajax.status == 404)
                 alert("Error");
@@ -209,7 +201,6 @@ let Calls = (function() {
         ajax.onreadystatechange = function() {
             if (ajax.readyState == 4 && ajax.status == 200) {
                 var response = JSON.parse(ajax.responseText);
-                console.log(response);
                 favouriteDrinks = response.favourites;
                 fillFavouriteDrinksImpl();
             }
@@ -221,66 +212,67 @@ let Calls = (function() {
     }
 
     function fillFavouriteDrinksImpl() {
-        var resultsDiv = document.getElementById("favouriteDrinksDiv");
-        resultsDiv.innerHTML = "";
+        var favouriteDrinksDiv = document.getElementById("favouriteDrinksDiv");
+        favouriteDrinksDiv.innerHTML = "";
 
         for (var i = 0; i < favouriteDrinks.length; i++) {
+            var favouriteDrinkDiv = document.createElement("div");
+            favouriteDrinkDiv.style.setProperty("padding", "30px");
 
-            var drinkDiv = document.createElement("div");
-            drinkDiv.style.padding = "30px";
+            var cocktailName = generateDrinkTitle(favouriteDrinks[i].name, true);
 
-            var cocktailName = generateCocktailNameWithDeleteButton(favouriteDrinks[i].name);
-            cocktailName.style.setProperty("display", "flex");
-            cocktailName.children[0].setAttribute("id", "favouriteDrinkTitle");
-            cocktailName.children[0].setAttribute("contenteditable", "true");
-            var cancelButton = document.createElement("button");
-            cancelButton.setAttribute("id", "removeFavouriteDrinkButton");
-            cancelButton.setAttribute("onclick", "clickRemoveFavouriteDrinkButton(this.parentElement.parentElement)");
-            var cancelImage = document.createElement("img");
-            cancelImage.setAttribute("src", "cancel.png");
-            cancelImage.setAttribute("id", "cancelIcon");
-            cancelImage.style.setProperty("width", "50px");
-            cancelImage.style.setProperty("height", "50px");
-            cancelImage.style.setProperty("display", "inline-block");
+            var alcoholSign = "AlcoholFree";
+            if (favouriteDrinks[i].isAlcoholic) alcoholSign = "Alcoholic";
+            var alcoholAlertParagraph = generateAlcoholAlertParagraph(alcoholSign);
 
-
-            cancelButton.appendChild(cancelImage);
-            cocktailName.appendChild(cancelButton);
-
-
-            var alcoholic = "Alcoholic";
-            if (!favouriteDrinks[i].isAlcoholic) alcoholic = "AlcoholFree";
-            var alcoholAlertParagraph = generateAlcoholAlertParagraph(alcoholic);
             var additionDrinkInfo = {
                 strDrinkThumb: favouriteDrinks[i].imageSource,
-                strInstructions: favouriteDrinks[i].description,
+                strInstructions: favouriteDrinks[i].description
             };
+
             for (var j = 0; j < favouriteDrinks[i].ingredients.length; j++) {
                 additionDrinkInfo["strIngredient" + (j + 1).toString()] = favouriteDrinks[i].ingredients[j];
                 if (favouriteDrinks[i].measures[j] != "undefined") additionDrinkInfo["strMeasure" + (j + 1).toString()] = favouriteDrinks[i].measures[j];
             }
-            var cocktailInfoDiv = generateCocktailInfoDiv(additionDrinkInfo, true, "280", "320", 1000, "25px", true);
-            var descriptionParagraph = cocktailInfoDiv.children[1].children[0];
+
+            var drinkInfoDiv = generateCocktailInfoDiv(additionDrinkInfo, true);
+
+            /*We need to modify it a bit, because it's not the same on 'favourites.html'.*/
+            var descriptionParagraph = drinkInfoDiv.children[1].children[0];
             descriptionParagraph.setAttribute("id", "descriptionParagraph");
             descriptionParagraph.setAttribute("contenteditable", "true");
             descriptionParagraph.style.setProperty("padding", "10px");
-            var editButton = generateButton(true);
 
-            var ingredientsTable = cocktailInfoDiv.children[1].children[1];
+            var edittingControlButtonsDiv = document.createElement("div");
+            edittingControlButtonsDiv.setAttribute("id", "edittingControlButtonsDiv");
+            var saveButton = document.createElement("a");
+            saveButton.setAttribute("href", "#popup1");
+            saveButton.setAttribute("id", "saveButton");
+            saveButton.setAttribute("onclick", "clickSaveButton()");
+            saveButton.innerHTML = "SAVE";
+
+            var cancelButton = document.createElement("button");
+            cancelButton.setAttribute("id", "cancelEdittingButton");
+            cancelButton.innerHTML = "CANCEL";
+            cancelButton.setAttribute("onclick", "clickCancelButton(this.parentElement.parentElement)");
+
+            edittingControlButtonsDiv.appendChild(saveButton);
+            edittingControlButtonsDiv.appendChild(cancelButton);
+
+            var ingredientsTable = drinkInfoDiv.children[1].children[1];
             ingredientsTable.setAttribute("id", "favouriteIngredientsTable");
 
-            drinkDiv.appendChild(cocktailName);
-            drinkDiv.appendChild(alcoholAlertParagraph);
-            drinkDiv.appendChild(cocktailInfoDiv);
-            drinkDiv.appendChild(editButton);
+            favouriteDrinkDiv.appendChild(cocktailName);
+            favouriteDrinkDiv.appendChild(alcoholAlertParagraph);
+            favouriteDrinkDiv.appendChild(drinkInfoDiv);
+            favouriteDrinkDiv.appendChild(edittingControlButtonsDiv);
 
             if (i < favouriteDrinks.length - 1) {
-                drinkDiv.style.borderBottom = "2px solid rgba(255,255,255,0.3)";
-                drinkDiv.style.marginTop = "5px";
+                favouriteDrinkDiv.style.setProperty("border-bottom", "2px solid rgba(255,255,255,0.3)");
+                favouriteDrinkDiv.style.setProperty("margin-top", "5px");
             }
 
-            resultsDiv.appendChild(drinkDiv);
-
+            favouriteDrinksDiv.appendChild(favouriteDrinkDiv);
         }
     }
 
@@ -323,9 +315,9 @@ let Calls = (function() {
 
 function generateImage(src, width, height) {
     var image = document.createElement("img");
-    image.src = src;
-    image.width = width;
-    image.height = height;
+    image.setAttribute("src", src);
+    image.style.setProperty("width", width);
+    image.style.setProperty("height", height);
     return image;
 }
 
@@ -338,7 +330,7 @@ function generateErrorDiv(message, imageSource) {
     errorMessage.setAttribute("id", "wrongSearch")
     errorMessage.innerHTML = message;
 
-    var errorImage = generateImage(imageSource, "200", "200");
+    var errorImage = generateImage(imageSource, "200px", "200px");
 
     errorDiv.appendChild(errorMessage);
     errorDiv.appendChild(errorImage);
@@ -346,212 +338,222 @@ function generateErrorDiv(message, imageSource) {
     return errorDiv;
 }
 
-function generateCocktailName(cocktailName) {
-    var nameParagraph = document.createElement("p");
-    nameParagraph.innerHTML = cocktailName;
-    nameParagraph.classList.add("drinkTitle");
-    return nameParagraph;
+function generateDrinkTitle(cocktailName, withDeleteButton) {
+    var drinkTitle = document.createElement("p");
+    drinkTitle.innerHTML = cocktailName;
+    drinkTitle.classList.add("drinkTitle");
+
+    if (withDeleteButton) {
+        var drinkTitleDiv = document.createElement("div");
+        drinkTitleDiv.style.setProperty("display", "flex");
+
+        drinkTitle.className = "";
+        drinkTitle.setAttribute("id", "favouriteDrinkTitle");
+        drinkTitle.setAttribute("contenteditable", "true");
+
+        var removeFavouriteDrinkButton = document.createElement("button");
+        removeFavouriteDrinkButton.setAttribute("id", "removeFavouriteDrinkButton");
+        removeFavouriteDrinkButton.setAttribute("onclick", "clickRemoveFavouriteDrinkButton(this.parentElement.parentElement)");
+
+        var cancelImage = document.createElement("img");
+        cancelImage.setAttribute("id", "removeFavouriteDrinkIcon");
+        cancelImage.setAttribute("src", "cancel.png");
+
+        removeFavouriteDrinkButton.appendChild(cancelImage);
+
+        drinkTitleDiv.appendChild(drinkTitle);
+        drinkTitleDiv.appendChild(removeFavouriteDrinkButton);
+
+        return drinkTitleDiv;
+    } else return drinkTitle;
 }
 
-function generateCocktailNameWithDeleteButton(cocktailName) {
+function generateBarmansRecommandationTitle(cocktailName) {
     var titleDiv = document.createElement("div");
-    var nameParagraph = document.createElement("p");
-    nameParagraph.innerHTML = cocktailName;
-    nameParagraph.classList.add("drinkTitle");
-    titleDiv.appendChild(nameParagraph);
-    return titleDiv;
-}
-
-function generateBarmansRecommandation(cocktailName) {
-    var header = document.createElement("div");
-    header.style.setProperty("display", "flex");
+    titleDiv.style.setProperty("display", "flex");
 
     var recommendedMessage = document.createElement("p");
-    recommendedMessage.innerHTML = "RECOMMENDED";
     recommendedMessage.setAttribute("id", "recommendedMessage");
+    recommendedMessage.innerHTML = "RECOMMENDED";
 
-    var img = document.createElement("img");
-    img.setAttribute("src", "star.png");
-    img.setAttribute("id", "starIcon");
+    var starIcon = document.createElement("img");
+    starIcon.setAttribute("src", "star.png");
+    starIcon.setAttribute("id", "starIcon");
 
-    var nameParagraph = document.createElement("p");
-    nameParagraph.innerHTML = cocktailName;
-    nameParagraph.classList.add("drinkTitle");
+    var drinkTitle = document.createElement("p");
+    drinkTitle.innerHTML = cocktailName;
+    drinkTitle.classList.add("drinkTitle");
 
+    titleDiv.appendChild(recommendedMessage);
+    titleDiv.appendChild(starIcon);
+    titleDiv.appendChild(drinkTitle);
 
-
-    header.appendChild(recommendedMessage);
-    header.appendChild(img);
-    header.appendChild(nameParagraph);
-    return header;
+    return titleDiv;
 }
 
 function generateAlcoholAlertParagraph(alcoholSign) {
     var alcoholAlertParagraph = document.createElement("p");
+    alcoholAlertParagraph.innerHTML = "ALCOHOL FREE";
+    alcoholAlertParagraph.classList.add("alcoholFree");
+
     if (alcoholSign == "Alcoholic") {
-        alcoholAlertParagraph.innerHTML = "ALCOHOLIC";
+        alcoholAlertParagraph.className = "";
         alcoholAlertParagraph.classList.add("alcoholic");
-    } else {
-        alcoholAlertParagraph.innerHTML = "ALCOHOL FREE";
-        alcoholAlertParagraph.classList.add("alcoholFree");
+        alcoholAlertParagraph.innerHTML = "ALCOHOLIC";
     }
+
     return alcoholAlertParagraph;
 }
 
-function generateButton(twoButtons) {
+function generateAddToFavouritesButton() {
     var buttonDiv = document.createElement("div");
-    if (twoButtons) {
-        var saveButton = document.createElement("button");
-        saveButton.setAttribute("id", "saveButton");
-        saveButton.innerHTML = "SAVE";
-        saveButton.setAttribute("onclick", "clickSaveButton()");
-        saveButton.style.setProperty("margin", "10px");
+    var button = document.createElement("button");
+    button.innerHTML = "ADD TO FAVOURITES";
+    button.setAttribute("id", "addToFavouritesButton");
+    button.setAttribute("onclick", "clickAddToFavouritesButton(this.parentElement.parentElement)");
+    buttonDiv.appendChild(button);
 
-        var cancelButton = document.createElement("button");
-        cancelButton.setAttribute("id", "cancelEdittingButton");
-        cancelButton.innerHTML = "CANCEL";
-        cancelButton.setAttribute("onclick", "clickCancelButton(this.parentElement.parentElement)");
-        cancelButton.style.setProperty("margin", "10px");
-
-
-        buttonDiv.style.setProperty("width", "80vw");
-        buttonDiv.style.setProperty("text-align", "center");
-        buttonDiv.appendChild(saveButton);
-        buttonDiv.appendChild(cancelButton);
-    } else {
-        var button = document.createElement("button");
-        button.innerHTML = "ADD TO FAVOURITES";
-        button.setAttribute("id", "addToFavouritesButton");
-        button.setAttribute("onclick", "clickAddToFavouritesButton(this.parentElement.parentElement)");
-        buttonDiv.appendChild(button);
-    }
     return buttonDiv;
 }
 
-function generateCocktailInfoDiv(drink, isOnFavourite, imageWidth, imageHeight, breakSize, cocktailDescriptionParagraphFontSize, favouriteDrinksTable) {
+function generateCocktailInfoDiv(drink, isOnFavourite) {
     var cocktailInfoDiv = document.createElement("div");
-    cocktailInfoDiv.style.display = "inline-block";
-    var cocktailImage = generateImage(drink.strDrinkThumb, imageWidth, imageHeight);
-    cocktailImage.style.float = "left";
+    cocktailInfoDiv.style.setProperty("display", "inline-block");
 
-    var cocktailDescription = generateCocktailDescription(drink, isOnFavourite, breakSize, cocktailDescriptionParagraphFontSize, favouriteDrinksTable);
+    var imageWidth = "180px";
+    var imageHeight = "200px";
+    if (isOnFavourite) {
+        imageWidth = "280px";
+        imageHeight = "300px";
+    }
+
+    var cocktailImage = generateImage(drink.strDrinkThumb, imageWidth, imageHeight);
+    cocktailImage.style.setProperty("float", "left");
+
+    var cocktailDescription = generateCocktailDescription(drink, isOnFavourite);
 
     cocktailInfoDiv.appendChild(cocktailImage);
     cocktailInfoDiv.appendChild(cocktailDescription);
     return cocktailInfoDiv;
 }
 
-function generateCocktailDescription(drink, isOnFavourite, breakSize, cocktailDescriptionParagraphFontSize, favouriteDrinksTable) {
-    var cocktailDescription = document.createElement("p");
-    if (isOnFavourite) cocktailDescription.style.setProperty("display", "flex");
-    cocktailDescription.style.float = "left";
-    cocktailDescription.style.color = "white";
-    cocktailDescription.style.paddingLeft = "5px";
+function generateCocktailDescription(drink, isFavouriteSite) {
+    var breakSize = 40;
+    var drinkDescriptionDiv = document.createElement("div");
+    drinkDescriptionDiv.setAttribute("id", "drinkDescriptionDiv");
+
+    var drinkDescription = document.createElement("p");
+
+    var ingredientsTable = document.createElement("table");
+    ingredientsTable.setAttribute("id", "ingredientsTable");
+
+    if (isFavouriteSite) {
+        drinkDescriptionDiv.style.setProperty("display", "flex");
+        drinkDescriptionDiv.style.setProperty("margin-left", "50px");
+        drinkDescription.style.setProperty("font-size", "25px");
+        breakSize = 50;
+
+        /*Ingredients table on 'home.html doesn't have headers, but
+        on 'favourites.html' has.*/
+    }
 
     var backSpaceMatched = false;
-    var cocktailDescriptionParagraph = document.createElement("p");
-    cocktailDescriptionParagraph.style.fontSize = cocktailDescriptionParagraphFontSize;
     for (var i = 0; i < drink.strInstructions.length; i++) {
         if (backSpaceMatched && drink.strInstructions[i] == ' ') {
-            cocktailDescriptionParagraph.innerHTML += "<br>";
+            drinkDescription.innerHTML += "<br>";
             backSpaceMatched = false;
         }
         if (i != 0 && i % breakSize == 0) {
             if (drink.strInstructions[i] == ' ')
-                cocktailDescriptionParagraph.innerHTML += "<br>";
+                drinkDescription.innerHTML += "<br>";
             else backSpaceMatched = true;
         }
-        cocktailDescriptionParagraph.innerHTML += drink.strInstructions[i];
+        drinkDescription.innerHTML += drink.strInstructions[i];
     }
 
-    cocktailDescriptionParagraph.innerHTML += "<br>";
-    cocktailDescriptionParagraph.innerHTML += "<br>";
-
-
-    var ingredientsTable = document.createElement("table");
-    ingredientsTable.id = "ingredientsTable";
+    drinkDescription.innerHTML += "<br>";
+    drinkDescription.innerHTML += "<br>";
 
     var counter = 1;
 
-    if (favouriteDrinksTable) {
-        var headerDrop = document.createElement("th");
+    if (isFavouriteSite) {
+        /* This 'if' is used for adding mentioned headers*/
+        var titleHeader = document.createElement("th");
 
-        var wrapperDiv = document.createElement("div");
-        wrapperDiv.style.setProperty("display", "flex");
-        var dropImage = document.createElement("img");
-        dropImage.setAttribute("src", "drop.png");
-        dropImage.style.setProperty("width", "30px");
-        dropImage.style.setProperty("height", "30px");
-        dropImage.style.setProperty("margin-left", "10px");
+        var titleHeaderDiv = document.createElement("div");
+        titleHeaderDiv.setAttribute("id", "titleHeaderDiv");
+
+        var dropImageHeader = document.createElement("img");
+        dropImageHeader.setAttribute("id", "dropImageHeader");
+        dropImageHeader.setAttribute("src", "drop.png");
 
         var ingredientsHeader = document.createElement("p");
+        ingredientsHeader.setAttribute("id", "ingredientsHeader");
         ingredientsHeader.innerHTML = "Ingredients";
-        ingredientsHeader.style.setProperty("margin-top", "0.3em");
 
-        wrapperDiv.appendChild(dropImage);
-        wrapperDiv.appendChild(ingredientsHeader);
-        headerDrop.appendChild(wrapperDiv);
+        titleHeaderDiv.appendChild(dropImageHeader);
+        titleHeaderDiv.appendChild(ingredientsHeader);
 
-        var headerAdd = document.createElement("th");
-        headerAdd.setAttribute("colspan", "2");
-        var addButton = generateButton(false);
-        addButton.innerHTML = "ADD";
-        addButton.setAttribute("id", "addIngredientButton");
-        addButton.setAttribute("onclick", "clickAddIngredientButton(this.parentElement.parentElement)");
-        headerAdd.appendChild(addButton);
-        ingredientsTable.appendChild(headerDrop);
-        ingredientsTable.appendChild(headerAdd);
+        titleHeader.appendChild(titleHeaderDiv);
+
+        var addIngredientHeader = document.createElement("th");
+        addIngredientHeader.setAttribute("colspan", "2");
+
+        var addIngredientButtonHeader = generateAddToFavouritesButton();
+        /* ADD TO FAVOURITES button is very similar to ADD button, so
+        we will simply modify generated ADD TO FAVOURITES button and use it. */
+        addIngredientButtonHeader.setAttribute("id", "addIngredientButton");
+        addIngredientButtonHeader.setAttribute("onclick", "clickAddIngredientButton(this.parentElement.parentElement)");
+        addIngredientButtonHeader.innerHTML = "ADD";
+
+        addIngredientHeader.appendChild(addIngredientButtonHeader);
+
+        ingredientsTable.appendChild(titleHeader);
+        ingredientsTable.appendChild(addIngredientHeader);
     }
     while (drink["strIngredient" + counter.toString()] != null && drink["strIngredient" + counter.toString()] != "") {
         var row = ingredientsTable.insertRow(ingredientsTable.rows.length);
-        if (!favouriteDrinksTable) {
-            var cellDrop = row.insertCell(0);
-            var imageDrop = generateImage("drop.png", "20", "20");
-            cellDrop.appendChild(imageDrop);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        if (isFavouriteSite) {
+            cell1.setAttribute("contenteditable", "true");
+            cell1.innerHTML = drink["strIngredient" + counter.toString()];
 
-            var cellIngredient = row.insertCell(1);
-            cellIngredient.setAttribute("contenteditable", "true");
-
-            cellIngredient.innerHTML = drink["strIngredient" + counter.toString()];
-            cellIngredient.style.fontWeight = "bold";
-            var cellMeasure = row.insertCell(2);
-            cellMeasure.setAttribute("contenteditable", "true");
-            cellMeasure.innerHTML = "";
+            cell2.setAttribute("contenteditable", "true");
+            cell2.innerHTML = "";
             if (drink["strMeasure" + counter.toString()] != null)
-                cellMeasure.innerHTML = drink["strMeasure" + counter.toString()];
+                cell2.innerHTML = drink["strMeasure" + counter.toString()];
+
+            var removeIngredientButton = document.createElement("button");
+            removeIngredientButton.setAttribute("id", "removeIngredientButton");
+            removeIngredientButton.setAttribute("onclick", "clickRemoveIngredientButton(this.parentElement.parentElement)");
+
+            var removeIngredientImage = document.createElement("img");
+            removeIngredientImage.setAttribute("id", "removeIngredientImage");
+            removeIngredientImage.setAttribute("src", "cancel.png");
+
+            removeIngredientButton.appendChild(removeIngredientImage);
+
+            cell3.appendChild(removeIngredientButton);
         } else {
+            var dropIcon = generateImage("drop.png", "20px", "20px");
+            cell1.appendChild(dropIcon);
 
-            var cellIngredient = row.insertCell(0);
-            cellIngredient.setAttribute("contenteditable", "true");
+            cell2.setAttribute("contenteditable", "true");
+            cell2.innerHTML = drink["strIngredient" + counter.toString()];
 
-            cellIngredient.innerHTML = drink["strIngredient" + counter.toString()];
-            cellIngredient.style.fontWeight = "bold";
-            var cellMeasure = row.insertCell(1);
-            cellMeasure.setAttribute("contenteditable", "true");
-            cellMeasure.innerHTML = "";
+            cell3.setAttribute("contenteditable", "true");
+            cell3.innerHTML = "";
             if (drink["strMeasure" + counter.toString()] != null)
-                cellMeasure.innerHTML = drink["strMeasure" + counter.toString()];
-            var cellDeleteRow = row.insertCell(2);
-            var deleteRowButton = document.createElement("button");
-            deleteRowButton.setAttribute("id", "removeFavouriteDrinkButton");
-            deleteRowButton.style.setProperty("width", "25px");
-            deleteRowButton.style.setProperty("height", "25px");
-            deleteRowButton.setAttribute("onclick", "clickRemoveIngredientButton(this.parentElement.parentElement)");
-
-            var cancelImage = document.createElement("img");
-            cancelImage.setAttribute("src", "cancel.png");
-            cancelImage.style.setProperty("width", "25px");
-            cancelImage.style.setProperty("height", "25px");
-
-            deleteRowButton.appendChild(cancelImage);
-            cellDeleteRow.appendChild(deleteRowButton);
+                cell3.innerHTML = drink["strMeasure" + counter.toString()];
         }
         counter++;
     }
 
-    cocktailDescription.appendChild(cocktailDescriptionParagraph);
-    cocktailDescription.appendChild(ingredientsTable);
-    return cocktailDescription;
+    drinkDescriptionDiv.appendChild(drinkDescription);
+    drinkDescriptionDiv.appendChild(ingredientsTable);
+    return drinkDescriptionDiv;
 }
 
 function fillSearchResultsDiv(drinks) {
@@ -560,10 +562,10 @@ function fillSearchResultsDiv(drinks) {
         var drinkDiv = document.createElement("div");
         drinkDiv.style.padding = "15px";
 
-        var cocktailName = generateCocktailName(drinks[i].strDrink);
+        var cocktailName = generateDrinkTitle(drinks[i].strDrink, false);
         var alcoholAlertParagraph = generateAlcoholAlertParagraph(drinks[i].strAlcoholic);
-        var cocktailInfoDiv = generateCocktailInfoDiv(drinks[i], false, "180", "200", 40, "15px", false);
-        var addToFavouritesButtonDiv = generateButton(false);
+        var cocktailInfoDiv = generateCocktailInfoDiv(drinks[i], false);
+        var addToFavouritesButtonDiv = generateAddToFavouritesButton();
 
         drinkDiv.appendChild(cocktailName);
         drinkDiv.appendChild(alcoholAlertParagraph);
@@ -571,13 +573,13 @@ function fillSearchResultsDiv(drinks) {
         drinkDiv.appendChild(addToFavouritesButtonDiv);
 
         if (i < drinks.length - 1) {
-            drinkDiv.style.borderBottom = "2px solid rgba(255,255,255,0.3)";
-            drinkDiv.style.marginTop = "5px";
+            drinkDiv.style.setProperty("border-bottom", "2px solid rgba(255,255,255,0.3)");
+            drinkDiv.style.setProperty("margin-top", "5px");
         }
 
         resultsDiv.appendChild(drinkDiv);
 
     }
-    resultsDiv.style.overflowY = "auto";
-    resultsDiv.style.height = "55vh";
+    resultsDiv.style.setProperty("overflow-y", "auto");
+    resultsDiv.style.setProperty("height", "55vh");
 }

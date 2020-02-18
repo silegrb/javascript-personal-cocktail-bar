@@ -1,3 +1,32 @@
 {
-  "favourites": []
+  "favourites": [
+    {
+      "name": "Brain Fuck",
+      "isAlcoholic": true,
+      "imageSource": "https://www.thecocktaildb.com/images/media/drink/ruywtq1461866066.jpg",
+      "description": "layered erin first, then sambuca and then avocart(should sit in middle of other two. To drink: use a straw to suck up avocart then shot the rest and then suck fumes up through straw.",
+      "ingredients": [
+        "New ingredient",
+        "New ingredient"
+      ],
+      "measures": [
+        "New measure",
+        "New measure"
+      ]
+    },
+    {
+      "name": "Queen Bee",
+      "isAlcoholic": true,
+      "imageSource": "https://www.thecocktaildb.com/images/media/drink/rvvpxu1478963194.jpg",
+      "description": "Shake all ingredients with ice, strain into a cocktail glass, and serve.",
+      "ingredients": [
+        "Lime vodka",
+        "Sherry"
+      ],
+      "measures": [
+        "1 1/2 oz ",
+        "1/2 oz cream "
+      ]
+    }
+  ]
 }

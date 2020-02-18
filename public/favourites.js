@@ -10,6 +10,7 @@ function clickRemoveFavouriteDrinkButton(favouriteDrink) {
 }
 
 function clickSaveButton() {
+
     var favouriteDrinkDivs = document.getElementById("favouriteDrinksDiv").children;
     var jsonFavouriteDrinks = [];
     for (var i = 0; i < favouriteDrinkDivs.length; i++) {
@@ -79,7 +80,7 @@ function clickCancelButton(clickedFavouriteDrinkDiv) {
             var addIngredientHeader = document.createElement("th");
             addIngredientHeader.setAttribute("colspan", "2");
 
-            var addIngredientButtonHeader = generateButton(false);
+            var addIngredientButtonHeader = generateAddToFavouritesButton();
             addIngredientButtonHeader.setAttribute("id", "addIngredientButton");
             addIngredientButtonHeader.setAttribute("onclick", "clickAddIngredientButton(this.parentElement.parentElement)");
             addIngredientButtonHeader.innerHTML = "ADD";

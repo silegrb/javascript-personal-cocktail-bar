@@ -64,6 +64,12 @@ h1 {
     margin-top: -5px;
 }
 
+#randomDrinkDiv {
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+}
+
 #shakeButton {
     font-family: 'Abel';
     width: 200px;
@@ -222,6 +228,13 @@ h1 {
     transition: 1s;
 }
 
+#drinkDescriptionDiv {
+    float: left;
+    color: white;
+    padding-left: 5px;
+    font-size: 15px;
+}
+
 #descriptionParagraph:focus {
     background: #3cd070;
     width: 27vw;
@@ -347,6 +360,12 @@ th {
     text-align: center;
     font-size: 50px;
     transition: 1s;
+    color: white;
+}
+
+#removeFavouriteDrinkIcon {
+    width: 50px;
+    height: 50px;
 }
 
 #favouriteDrinkTitle:focus {
@@ -432,14 +451,22 @@ th {
     height: 25px;
 }
 
+#edittingControlButtonsDiv {
+    width: 80vw;
+    text-align: center;
+}
+
 #saveButton {
-    width: 15vw;
+    text-decoration: none;
+    padding-left: 6vw;
+    padding-right: 6vw;
     font-size: 25px;
     border-radius: 20px;
     color: white;
     background: #3cd070;
     border: none;
     font-family: 'Abel';
+    margin: 10px;
 }
 
 #saveButton:active {
@@ -456,6 +483,7 @@ th {
     background: rgba(240, 52, 52, 1);
     border: none;
     font-family: 'Abel';
+    margin: 10px;
 }
 
 #cancelEdittingButton:active {
@@ -511,7 +539,8 @@ input:focus,
 #shakeButton:focus,
 #saveButton:focus,
 #cancelEdittingButton:focus,
-#removeFavouriteDrinkButton:focus {
+#removeFavouriteDrinkButton:focus,
+#removeIngredientButton:focus {
     outline: none;
 }
 
@@ -524,7 +553,8 @@ input:focus,
 
 #shakeButton:active,
 #removeFavouriteDrinkButton:active,
-#addIngredientButton:active {
+#addIngredientButton:active,
+#removeIngredientButton:active {
     transform: translateY(5px);
 }
 
@@ -545,4 +575,51 @@ input:focus,
 ::-webkit-scrollbar-thumb {
     background: #8b8787;
     border-radius: 5px;
+}
+
+#popup1 {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.8);
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+}
+
+#popup1:target {
+    visibility: visible;
+    opacity: 1;
+}
+
+.popup {
+    margin: 40vh auto;
+    padding: 50px;
+    background: #3cd070;
+    border-radius: 5px;
+    width: 40%;
+    position: relative;
+    transition: all 5s ease-in-out;
+}
+
+.popup .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+}
+
+.popup .content {
+    max-height: 30%;
+    overflow: auto;
+    color: black;
+    font-size: 30px;
+    font-family: 'Abel';
+    text-align: center;
 }
