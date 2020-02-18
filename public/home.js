@@ -1,34 +1,16 @@
 window.onload = Calls.shakeCocktail();
 
-var currentInput = "";
+/*##########################
+##### GLOBAL VARIABLES #####
+############################*/
+var currentSearchInput = "";
 var currentSearchMode = 1;
 
-function saveSearchInput() {
-    currentInput += document.getElementById("searchInput").value;
-}
-
-function clickSearch() {
-    switch (currentSearchMode) {
-        case 1:
-            Calls.searchCocktails(currentInput);
-            break;
-        case 2:
-            Calls.searchForCocktailsByIngredient(currentInput);
-            break;
-        case 3:
-            Calls.searchForFilteredDrinks(currentInput, 1);
-            break;
-        case 4:
-            Calls.searchForFilteredDrinks(currentInput, 0);
-            break;
-        case 5:
-            Calls.listTenRandomCocktails();
-            currentSearchMode = 1;
-            break;
-        default:
-    }
-    currentInput = "";
-    document.getElementById("searchInput").value = "";
+/*##########################
+######### FUNCTIONS ########
+############################*/
+function clickShakeButton() {
+    Calls.shakeAnotherCocktail();
 }
 
 function pickSearchMode(pickedOption) {
@@ -54,39 +36,77 @@ function pickSearchMode(pickedOption) {
     }
 }
 
-function clickAddToFavourites(clickedDrinkDiv) {
+function appendSearchInput() {
+    currentSearchInput += document.getElementById("searchInput").value;
+}
+
+function clickSearchButton() {
+    switch (currentSearchMode) {
+        case 1:
+            Calls.searcForCocktails(currentSearchInput);
+            break;
+        case 2:
+            Calls.searchForCocktailsByIngredient(currentSearchInput);
+            break;
+        case 3:
+            Calls.searchForFilteredDrinks(currentSearchInput, 1);
+            break;
+        case 4:
+            Calls.searchForFilteredDrinks(currentSearchInput, 0);
+            break;
+        case 5:
+            Calls.listTenRandomCocktails();
+            currentSearchMode = 1;
+            break;
+        default:
+    }
+    currentSearchInput = "";
+    document.getElementById("searchInput").value = "";
+}
+
+function clickEnterKeyToSearch(event) {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        document.getElementById("searchButton").click();
+    }
+}
+
+function clickAddToFavouritesButton(clickedDrinkDiv) {
     var notificationsTable = document.getElementById("nofiticationsTable");
 
     var newRow = notificationsTable.insertRow(notificationsTable.rows.length);
 
     var cellNotificationMessage = newRow.insertCell(0);
-    var drinkName = clickedDrinkDiv.children[0];
-    if (drinkName.tagName == "DIV") drinkName = drinkName.children[2];
-    drinkName = drinkName.innerHTML;
-    cellNotificationMessage.style.color = "white";
-    var cellCancelImage = newRow.insertCell(1);
+    cellNotificationMessage.setAttribute("class", "cellNotificationMessage");
 
-    var cancelButton = document.createElement("button");
-    cancelButton.setAttribute("id", "cancelButton");
-    cancelButton.setAttribute("onclick", "clickRemoveNotificationButton(this.parentElement.parentElement)");
+    var drinkTitle = clickedDrinkDiv.children[0];
+    /*shakeComponent has standard drink title formatted as
+    "Recommended \\star.png\\ 'Drink Title'", so we have to 
+    extract it from that div with next line if that's the case*/
+    if (drinkTitle.tagName == "DIV") drinkTitle = drinkTitle.children[2];
+    drinkTitle = drinkTitle.innerHTML;
+
+    var cellRemoveNotification = newRow.insertCell(1);
+
+    var removeNotificationButton = document.createElement("button");
+    removeNotificationButton.setAttribute("id", "removeNotificationButton");
+    removeNotificationButton.setAttribute("onclick", "clickRemoveNotificationButton(this.parentElement.parentElement)");
 
     var cancelImage = document.createElement("img");
+    cancelImage.setAttribute("id", "cancelIcon");
     cancelImage.setAttribute("src", "cancel.png");
-    cancelImage.setAttribute("id", "cancel");
 
-    cancelButton.appendChild(cancelImage);
-    cellCancelImage.appendChild(cancelButton);
+    removeNotificationButton.appendChild(cancelImage);
 
-    var jsonDrink = {
+    cellRemoveNotification.appendChild(removeNotificationButton);
 
-    };
-
-    jsonDrink.name = drinkName;
-    jsonDrink.isAlcoholic = (clickedDrinkDiv.children[1].innerHTML == "ALCOHOLIC");
-    jsonDrink.imageSource = clickedDrinkDiv.children[2].children[0].src;
-    var str = clickedDrinkDiv.children[2].children[1].children[0].innerHTML;
-    var res = str.replace(/<br>/g, "");
-    jsonDrink.description = res;
+    var jsonFavouriteDrink = {};
+    jsonFavouriteDrink.name = drinkTitle;
+    jsonFavouriteDrink.isAlcoholic = (clickedDrinkDiv.children[1].innerHTML == "ALCOHOLIC");
+    jsonFavouriteDrink.imageSource = clickedDrinkDiv.children[2].children[0].src;
+    var unformattedDrinkDescription = clickedDrinkDiv.children[2].children[1].children[0].innerHTML;
+    var formattedDrinkDescription = unformattedDrinkDescription.replace(/<br>/g, "");
+    jsonFavouriteDrink.description = formattedDrinkDescription;
     var ingredientsTable = clickedDrinkDiv.children[2].children[1].children[1];
     var ingredientsArray = [];
     var measuresArray = [];
@@ -98,26 +118,12 @@ function clickAddToFavourites(clickedDrinkDiv) {
         else measuresArray.push("undefined");
     }
 
-    jsonDrink.ingredients = ingredientsArray;
-    jsonDrink.measures = measuresArray;
+    jsonFavouriteDrink.ingredients = ingredientsArray;
+    jsonFavouriteDrink.measures = measuresArray;
 
-    Calls.writeFavouriteCocktailsFile(jsonDrink, cellNotificationMessage);
-
+    Calls.writeFavouriteCocktailsFile(jsonFavouriteDrink, cellNotificationMessage);
 }
 
 function clickRemoveNotificationButton(notification) {
     notification.remove();
-}
-
-function shakeACocktail() {
-    Calls.shakeAnotherCocktail();
-}
-
-
-function clickEnter(event) {
-    if (event.keyCode === 13) {
-        event.preventDefault();
-        document.getElementById("searchButton").click();
-        console.log("this is it: " + currentInput);
-    }
 }

@@ -31,8 +31,8 @@
                         <p onclick="pickSearchMode(5)">List 10 random cocktails</p>
                     </div>
                 </div>
-                <input id="searchInput" onkeyup="clickEnter(event)" onchange="saveSearchInput()" type="text" placeholder="Search for cocktails">
-                <button id="searchButton" onclick="clickSearch()"><img id="searchIcon" src="searchIcon.png"></button>
+                <input id="searchInput" onkeyup="clickEnterKeyToSearch(event)" onchange="appendSearchInput()" type="text" placeholder="Search for cocktails">
+                <button id="searchButton" onclick="clickSearchButton()"><img id="searchIcon" src="searchIcon.png"></button>
             </div>
             <div id="searchResultsDiv">
             </div>

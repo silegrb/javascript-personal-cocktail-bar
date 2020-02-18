@@ -2,7 +2,7 @@ let Calls = (function() {
 
     var favouriteDrinks = [];
 
-    function searchCocktailsImpl(searchInput) {
+    function searcForCocktailsImpl(searchInput) {
         fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=' + searchInput)
             .then(response => response.json())
             .then(json => {
@@ -147,7 +147,7 @@ let Calls = (function() {
             var shakeButton = document.createElement("button");
             shakeButton.innerHTML = "SHAKE";
             shakeButton.setAttribute("id", "shakeButton");
-            shakeButton.setAttribute("onclick", "shakeACocktail()");
+            shakeButton.setAttribute("onclick", "clickShakeButton()");
 
             shaker.append(drinkDiv);
             shaker.append(shakeButton);
@@ -174,7 +174,7 @@ let Calls = (function() {
         });
     }
 
-    function writeFavouriteCocktailsFileImpl(jsonDrink, cellNotificationMessage) {
+    function writeFavouriteCocktailsFileImpl(jsonFavouriteDrink, cellNotificationMessage) {
         var ajax = new XMLHttpRequest();
         ajax.onreadystatechange = function() {
             if (ajax.readyState == 4 && ajax.status == 200) {
@@ -192,12 +192,12 @@ let Calls = (function() {
         ajax.open("POST", "addFavourite", true);
         ajax.setRequestHeader("Content-Type", "application/json");
         ajax.send(JSON.stringify({
-            name: jsonDrink.name,
-            isAlcoholic: jsonDrink.isAlcoholic,
-            imageSource: jsonDrink.imageSource,
-            description: jsonDrink.description,
-            ingredients: jsonDrink.ingredients,
-            measures: jsonDrink.measures
+            name: jsonFavouriteDrink.name,
+            isAlcoholic: jsonFavouriteDrink.isAlcoholic,
+            imageSource: jsonFavouriteDrink.imageSource,
+            description: jsonFavouriteDrink.description,
+            ingredients: jsonFavouriteDrink.ingredients,
+            measures: jsonFavouriteDrink.measures
         }));
 
 
@@ -231,14 +231,14 @@ let Calls = (function() {
 
             var cocktailName = generateCocktailNameWithDeleteButton(favouriteDrinks[i].name);
             cocktailName.style.setProperty("display", "flex");
-            cocktailName.children[0].setAttribute("id", "cocktailName");
+            cocktailName.children[0].setAttribute("id", "favouriteDrinkTitle");
             cocktailName.children[0].setAttribute("contenteditable", "true");
             var cancelButton = document.createElement("button");
-            cancelButton.setAttribute("id", "deleteButton");
+            cancelButton.setAttribute("id", "removeFavouriteDrinkButton");
             cancelButton.setAttribute("onclick", "clickDeleteFavouriteCocktail(this.parentElement.parentElement)");
             var cancelImage = document.createElement("img");
             cancelImage.setAttribute("src", "cancel.png");
-            cancelImage.setAttribute("id", "cancel");
+            cancelImage.setAttribute("id", "cancelIcon");
             cancelImage.style.setProperty("width", "50px");
             cancelImage.style.setProperty("height", "50px");
             cancelImage.style.setProperty("display", "inline-block");
@@ -267,7 +267,7 @@ let Calls = (function() {
             var editButton = generateButton(true);
 
             var ingredientsTable = cocktailInfoDiv.children[1].children[1];
-            ingredientsTable.setAttribute("id", "ingredientsTableFavs");
+            ingredientsTable.setAttribute("id", "favouriteIngredientsTable");
 
             drinkDiv.appendChild(cocktailName);
             drinkDiv.appendChild(alcoholAlertParagraph);
@@ -306,7 +306,7 @@ let Calls = (function() {
     }
 
     return {
-        searchCocktails: searchCocktailsImpl,
+        searcForCocktails: searcForCocktailsImpl,
         searchForCocktailsByIngredient: searchForCocktailsByIngredientImpl,
         searchForFilteredDrinks: searchForFilteredDrinksImpl,
         listTenRandomCocktails: listTenRandomCocktailsImpl,
@@ -349,7 +349,7 @@ function generateErrorDiv(message, imageSource) {
 function generateCocktailName(cocktailName) {
     var nameParagraph = document.createElement("p");
     nameParagraph.innerHTML = cocktailName;
-    nameParagraph.classList.add("drinkName");
+    nameParagraph.classList.add("drinkTitle");
     return nameParagraph;
 }
 
@@ -357,7 +357,7 @@ function generateCocktailNameWithDeleteButton(cocktailName) {
     var titleDiv = document.createElement("div");
     var nameParagraph = document.createElement("p");
     nameParagraph.innerHTML = cocktailName;
-    nameParagraph.classList.add("drinkName");
+    nameParagraph.classList.add("drinkTitle");
     titleDiv.appendChild(nameParagraph);
     return titleDiv;
 }
@@ -372,11 +372,11 @@ function generateBarmansRecommandation(cocktailName) {
 
     var img = document.createElement("img");
     img.setAttribute("src", "star.png");
-    img.setAttribute("id", "starImage");
+    img.setAttribute("id", "starIcon");
 
     var nameParagraph = document.createElement("p");
     nameParagraph.innerHTML = cocktailName;
-    nameParagraph.classList.add("drinkName");
+    nameParagraph.classList.add("drinkTitle");
 
 
 
@@ -421,8 +421,8 @@ function generateButton(twoButtons) {
     } else {
         var button = document.createElement("button");
         button.innerHTML = "ADD TO FAVOURITES";
-        button.setAttribute("id", "addToFavourites");
-        button.setAttribute("onclick", "clickAddToFavourites(this.parentElement.parentElement)");
+        button.setAttribute("id", "addToFavouritesButton");
+        button.setAttribute("onclick", "clickAddToFavouritesButton(this.parentElement.parentElement)");
         buttonDiv.appendChild(button);
     }
     return buttonDiv;
@@ -496,7 +496,7 @@ function generateCocktailDescription(drink, isOnFavourite, breakSize, cocktailDe
         headerAdd.setAttribute("colspan", "2");
         var addButton = generateButton(false);
         addButton.innerHTML = "ADD";
-        addButton.setAttribute("id", "addButton");
+        addButton.setAttribute("id", "addIngredientButton");
         addButton.setAttribute("onclick", "clickAddIngredientButton(this.parentElement.parentElement)");
         headerAdd.appendChild(addButton);
         ingredientsTable.appendChild(headerDrop);
@@ -533,7 +533,7 @@ function generateCocktailDescription(drink, isOnFavourite, breakSize, cocktailDe
                 cellMeasure.innerHTML = drink["strMeasure" + counter.toString()];
             var cellDeleteRow = row.insertCell(2);
             var deleteRowButton = document.createElement("button");
-            deleteRowButton.setAttribute("id", "deleteButton");
+            deleteRowButton.setAttribute("id", "removeFavouriteDrinkButton");
             deleteRowButton.style.setProperty("width", "25px");
             deleteRowButton.style.setProperty("height", "25px");
             deleteRowButton.setAttribute("onclick", "clickDeleteRowButton(this.parentElement.parentElement)");

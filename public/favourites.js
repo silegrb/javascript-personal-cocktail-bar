@@ -82,7 +82,7 @@ function clickCancelButton(drink) {
                     cellMeasure.innerHTML = lastVersionDrink.measures[j];
                 var cellDeleteRow = row.insertCell(2);
                 var deleteRowButton = document.createElement("button");
-                deleteRowButton.setAttribute("id", "deleteButton");
+                deleteRowButton.setAttribute("id", "deleteBuremoveFavouriteDrinkButtontton");
                 deleteRowButton.style.setProperty("width", "25px");
                 deleteRowButton.style.setProperty("height", "25px");
                 deleteRowButton.setAttribute("onclick", "clickDeleteRowButton(this.parentElement.parentElement)");
@@ -120,7 +120,7 @@ function clickAddIngredientButton(table) {
     cellMeasure.innerHTML = "New measure";
     var cellDeleteRow = row.insertCell(2);
     var deleteRowButton = document.createElement("button");
-    deleteRowButton.setAttribute("id", "deleteButton");
+    deleteRowButton.setAttribute("id", "removeFavouriteDrinkButton");
     deleteRowButton.style.setProperty("width", "25px");
     deleteRowButton.style.setProperty("height", "25px");
     deleteRowButton.setAttribute("onclick", "clickDeleteRowButton(this.parentElement.parentElement)");
