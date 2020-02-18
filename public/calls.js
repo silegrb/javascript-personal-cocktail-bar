@@ -10,14 +10,14 @@ let Calls = (function() {
                 var drinks = json.drinks;
 
                 //Next line will clear complete div, so they don't append on next search...
-                document.getElementById("resultsDiv").innerHTML = "";
+                document.getElementById("searchResultsDiv").innerHTML = "";
 
                 if (drinks == null) {
                     var noSearchResultDiv = generateErrorDiv("OOPS! We couldnt't find any drinks :(", "brokenSearch.png");
-                    document.getElementById("resultsDiv").appendChild(noSearchResultDiv);
+                    document.getElementById("searchResultsDiv").appendChild(noSearchResultDiv);
                 } else if (searchInput == "") {
                     var noSearchInputDiv = generateErrorDiv("OOPS! Empty search :(", "brokenSearch.png");
-                    document.getElementById("resultsDiv").appendChild(noSearchInputDiv);
+                    document.getElementById("searchResultsDiv").appendChild(noSearchInputDiv);
                 } else fillResultsDiv(drinks);
             })
     }
@@ -39,14 +39,14 @@ let Calls = (function() {
                 var drinks = json.drinks;
 
                 //Next line will clear complete div, so they don't append on next search...
-                document.getElementById("resultsDiv").innerHTML = "";
+                document.getElementById("searchResultsDiv").innerHTML = "";
 
                 if (drinks == null && searchInput != "") {
                     var noSearchResultDiv = generateErrorDiv("OOPS! We couldnt't find any drinks with that ingredient :(", "brokenSearch.png");
-                    document.getElementById("resultsDiv").appendChild(noSearchResultDiv);
+                    document.getElementById("searchResultsDiv").appendChild(noSearchResultDiv);
                 } else if (searchInput == "") {
                     var noSearchInputDiv = generateErrorDiv("OOPS! Empty search :(", "brokenSearch.png");
-                    document.getElementById("resultsDiv").appendChild(noSearchInputDiv);
+                    document.getElementById("searchResultsDiv").appendChild(noSearchInputDiv);
                 } else {
                     var drinksWithSpecifiedIngredient = [];
                     const promises = drinks.map(drink =>
@@ -69,17 +69,17 @@ let Calls = (function() {
                 var drinks = json.drinks;
 
                 //Next line will clear complete div, so they don't append on next search...
-                document.getElementById("resultsDiv").innerHTML = "";
+                document.getElementById("searchResultsDiv").innerHTML = "";
 
                 if (drinks == null) {
                     var alcoholicSign = "";
                     if (isAlcoholic) alcoholicSign = "alcoholic";
                     else alcoholicSign = "alcohol free";
                     var noSearchResultDiv = generateErrorDiv("OOPS! We couldnt't find any " + alcoholicSign + " drinks :(", "brokenSearch.png");
-                    document.getElementById("resultsDiv").appendChild(noSearchResultDiv);
+                    document.getElementById("searchResultsDiv").appendChild(noSearchResultDiv);
                 } else if (searchInput == "") {
                     var noSearchInputDiv = generateErrorDiv("OOPS! Empty search :(", "brokenSearch.png");
-                    document.getElementById("resultsDiv").appendChild(noSearchInputDiv);
+                    document.getElementById("searchResultsDiv").appendChild(noSearchInputDiv);
                 } else {
                     //1 is for alcoholic drinks, 0 is for alcohol free (isAlcoholic parameter value)
                     if (isAlcoholic) {
@@ -103,7 +103,7 @@ let Calls = (function() {
     function listTenRandomCocktailsImpl() {
 
         //Next line will clear complete div, so they don't append on next search...
-        document.getElementById("resultsDiv").innerHTML = "";
+        document.getElementById("searchResultsDiv").innerHTML = "";
 
         // https://www.thecocktaildb.com/api/json/v1/1/random.php
         var randomDrinks = [];
@@ -119,7 +119,7 @@ let Calls = (function() {
     }
 
     function shakeCocktailImpl() {
-        var shaker = document.getElementById("shaker");
+        var shaker = document.getElementById("shakeComponent");
         shaker.innerHTML = "";
 
         fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php').
@@ -221,7 +221,7 @@ let Calls = (function() {
     }
 
     function fillFavouriteDrinksImpl() {
-        var resultsDiv = document.getElementById("resultsDiv");
+        var resultsDiv = document.getElementById("searchResultsDiv");
         resultsDiv.innerHTML = "";
 
         for (var i = 0; i < favouriteDrinks.length; i++) {
@@ -555,7 +555,7 @@ function generateCocktailDescription(drink, isOnFavourite, breakSize, cocktailDe
 }
 
 function fillResultsDiv(drinks) {
-    var resultsDiv = document.getElementById("resultsDiv");
+    var resultsDiv = document.getElementById("searchResultsDiv");
     for (var i = 0; i < drinks.length; i++) {
         var drinkDiv = document.createElement("div");
         drinkDiv.style.padding = "15px";

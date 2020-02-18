@@ -9,48 +9,49 @@
 </head>
 
 <body>
-    <div id="hdr" class="header">
+    <div id="headerDiv">
         <h1>Cocktail Bar Softhouse</h1>
         <a href="home.html">Home</a> | <a href="favourites.html">Favourites</a> | <a href="about.html">About</a>
     </div>
-    <div class="wrapper">
-        <div id="shaker">
-        </div>
-        <div class="searchWrapper">
-            <div class="searchContainer">
-                <div class="searchForm">
-                    <div class="dropdown">
-                        <button id="menuButton" onclick="myFunc()" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><img id="menu" src="menu.png" /></button>
-                        <div class="dropdown-content">
-                            <p onclick="pickAnOption(1)">Search for cocktails</p>
-                            <p onclick="pickAnOption(2)">Search for cocktails by ingredient</p>
-                            <p onclick="pickAnOption(3)">Search for only alcoholic cocktails</p>
-                            <p onclick="pickAnOption(4)">Search for only alcohol free cocktails</p>
-                            <p onclick="pickAnOption(5)">List 10 random cocktails</p>
-                        </div>
-                    </div>
-                    <input onkeyup="clickEnter(event)" onchange="saveInput()" id="searchInput" type="text" placeholder="Search for cocktails" name="search">
-                    <button id="searchButton" onclick="clickSearch()"><img id="searchIcon"
-                            src="searchIcon.png"></button>
-                </div>
-            </div>
-            <div id="resultsDiv" class="resultsDiv">
 
+    <div class="homeMainDiv">
+
+        <div id="shakeComponent">
+        </div>
+
+        <div id="searchComponent">
+            <div id="searchBar">
+                <div class="dropdown">
+                    <button id="menuButton" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><img id="menuIcon" src="menu.png" /></button>
+                    <div class="dropdown-content">
+                        <p onclick="pickSearchMode(1)">Search for cocktails</p>
+                        <p onclick="pickSearchMode(2)">Search for cocktails by ingredient</p>
+                        <p onclick="pickSearchMode(3)">Search for only alcoholic cocktails</p>
+                        <p onclick="pickSearchMode(4)">Search for only alcohol free cocktails</p>
+                        <p onclick="pickSearchMode(5)">List 10 random cocktails</p>
+                    </div>
+                </div>
+                <input id="searchInput" onkeyup="clickEnter(event)" onchange="saveSearchInput()" type="text" placeholder="Search for cocktails">
+                <button id="searchButton" onclick="clickSearch()"><img id="searchIcon" src="searchIcon.png"></button>
+            </div>
+            <div id="searchResultsDiv">
             </div>
         </div>
-        <div id="notificationWrapper">
-            <div id="notificationsCenter" class="notificationsCenter">
-                <div id="notificationsHeader">
-                    <img id="bell" src="bell.png">
-                    <p id="notificationMessage">NOFITICATIONS</p>
+
+        <div id="notificationsComponent">
+            <div id="notificationsWrapperDiv">
+                <div id="notificationsHeaderDiv">
+                    <img id="bellIcon" src="bell.png">
+                    <p id="notificationsHeaderTitle">NOFITICATIONS</p>
                 </div>
-                <table id="nofitications">
+                <table id="nofiticationsTable">
                 </table>
             </div>
         </div>
     </div>
+
+    <script src="calls.js"></script>
+    <script src="home.js"></script>
 </body>
-<script src="calls.js"></script>
-<script src="home.js"></script>
 
 </html>

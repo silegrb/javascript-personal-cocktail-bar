@@ -3,7 +3,7 @@ window.onload = Calls.shakeCocktail();
 var currentInput = "";
 var currentSearchMode = 1;
 
-function saveInput() {
+function saveSearchInput() {
     currentInput += document.getElementById("searchInput").value;
 }
 
@@ -31,7 +31,7 @@ function clickSearch() {
     document.getElementById("searchInput").value = "";
 }
 
-function pickAnOption(pickedOption) {
+function pickSearchMode(pickedOption) {
     currentSearchMode = pickedOption;
     var searchBar = document.getElementById("searchInput");
     switch (pickedOption) {
@@ -55,7 +55,7 @@ function pickAnOption(pickedOption) {
 }
 
 function clickAddToFavourites(clickedDrinkDiv) {
-    var notificationsTable = document.getElementById("nofitications");
+    var notificationsTable = document.getElementById("nofiticationsTable");
 
     var newRow = notificationsTable.insertRow(notificationsTable.rows.length);
 
