@@ -1,1 +1,152 @@
-{"favourites":[{"name":"ABC","isAlcoholic":true,"imageSource":"https://www.thecocktaildb.com/images/media/drink/tqpvqp1472668328.jpg","description":"Layered in a shot glass.","ingredients":["Amaretto","Baileys irish cream","Cognac"],"measures":["1/3 ","1/3 ","1/3 "]},{"name":"Pisco Sour","isAlcoholic":true,"imageSource":"https://www.thecocktaildb.com/images/media/drink/tsssur1439907622.jpg","description":"Vigorously shake and strain contents in a cocktail shaker with ice cubes, then pour into glass and garnish with bitters.[1]","ingredients":["Pisco","Lemon juice","Sugar","Ice"],"measures":["2 oz ","1 oz ","1-2 tblsp ",""]},{"name":"Nutty Irishman","isAlcoholic":true,"imageSource":"https://www.thecocktaildb.com/images/media/drink/xspupx1441248014.jpg","description":"Serve over ice","ingredients":["Baileys irish cream","Frangelico","Milk","New ingredient","New ingredient"],"measures":["1 part ","1 part ","1 part ","New measure","New measure"]},{"name":"Bahama Mama","isAlcoholic":true,"imageSource":"https://www.thecocktaildb.com/images/media/drink/tyb4a41515793339.jpg","description":"Add 2 parts club soda or more or less to taste.\n\n\n\nMix it all together and pour over a bunch of ice. Drink with a straw.","ingredients":["Rum","Dark Rum","Banana liqueur","Grenadine","Pineapple Juice","Orange Juice","Sweet and Sour"],"measures":["3 parts","1 part","1 part","1 part","2 parts","2 parts","1 part"]},{"name":"A1","isAlcoholic":true,"imageSource":"https://www.thecocktaildb.com/images/media/drink/2x8thr1504816928.jpg","description":"Pour all ingredients into a cocktail shaker, mix and serve over ice into a chilled glass.","ingredients":["Gin","Grand Marnier","Lemon Juice","Grenadine"],"measures":["1 3/4 shot ","1 Shot ","1/4 Shot","1/8 Shot"]},{"name":"Cream Soda","isAlcoholic":true,"imageSource":"https://www.thecocktaildb.com/images/media/drink/yqstxr1479209367.jpg","description":"Pour 1oz of Spiced Rum into a highball glass with ice. Fill with Ginger Ale.","ingredients":["Spiced rum","Ginger ale"],"measures":["1 oz ",""]},{"name":"Grim Reaper","isAlcoholic":true,"imageSource":"https://www.thecocktaildb.com/images/media/drink/kztu161504883192.jpg","description":"Mix Kahlua and 151 in glass. Quickly add ice and pour grenadine over ice to give ice red tint.","ingredients":["Kahlua","151 proof rum","Grenadine"],"measures":["1 oz ","1 oz Bacardi ","1 dash "]}]}
+{
+  "favourites": [
+    {
+      "name": "ABC",
+      "isAlcoholic": true,
+      "imageSource": "https://www.thecocktaildb.com/images/media/drink/tqpvqp1472668328.jpg",
+      "description": "Layered in a shot glass.",
+      "ingredients": [
+        "Amaretto",
+        "Baileys irish cream",
+        "Cognac"
+      ],
+      "measures": [
+        "1/3 ",
+        "1/3 ",
+        "1/3 "
+      ]
+    },
+    {
+      "name": "Pisco Sour",
+      "isAlcoholic": true,
+      "imageSource": "https://www.thecocktaildb.com/images/media/drink/tsssur1439907622.jpg",
+      "description": "Vigorously shake and strain contents in a cocktail shaker with ice cubes, then pour into glass and garnish with bitters.[1]",
+      "ingredients": [
+        "Pisco",
+        "Lemon juice",
+        "Sugar",
+        "Ice"
+      ],
+      "measures": [
+        "2 oz ",
+        "1 oz ",
+        "1-2 tblsp ",
+        ""
+      ]
+    },
+    {
+      "name": "Nutty Irishman",
+      "isAlcoholic": true,
+      "imageSource": "https://www.thecocktaildb.com/images/media/drink/xspupx1441248014.jpg",
+      "description": "Serve over ice",
+      "ingredients": [
+        "Baileys irish cream",
+        "Frangelico",
+        "Milk",
+        "New ingredient",
+        "New ingredient"
+      ],
+      "measures": [
+        "1 part ",
+        "1 part ",
+        "1 part ",
+        "New measure",
+        "New measure"
+      ]
+    },
+    {
+      "name": "Bahama Mama",
+      "isAlcoholic": true,
+      "imageSource": "https://www.thecocktaildb.com/images/media/drink/tyb4a41515793339.jpg",
+      "description": "Add 2 parts club soda or more or less to taste.\n\n\n\nMix it all together and pour over a bunch of ice. Drink with a straw.",
+      "ingredients": [
+        "Rum",
+        "Dark Rum",
+        "Banana liqueur",
+        "Grenadine",
+        "Pineapple Juice",
+        "Orange Juice",
+        "Sweet and Sour"
+      ],
+      "measures": [
+        "3 parts",
+        "1 part",
+        "1 part",
+        "1 part",
+        "2 parts",
+        "2 parts",
+        "1 part"
+      ]
+    },
+    {
+      "name": "A1",
+      "isAlcoholic": true,
+      "imageSource": "https://www.thecocktaildb.com/images/media/drink/2x8thr1504816928.jpg",
+      "description": "Pour all ingredients into a cocktail shaker, mix and serve over ice into a chilled glass.",
+      "ingredients": [
+        "Gin",
+        "Grand Marnier",
+        "Lemon Juice",
+        "Grenadine"
+      ],
+      "measures": [
+        "1 3/4 shot ",
+        "1 Shot ",
+        "1/4 Shot",
+        "1/8 Shot"
+      ]
+    },
+    {
+      "name": "Cream Soda",
+      "isAlcoholic": true,
+      "imageSource": "https://www.thecocktaildb.com/images/media/drink/yqstxr1479209367.jpg",
+      "description": "Pour 1oz of Spiced Rum into a highball glass with ice. Fill with Ginger Ale.",
+      "ingredients": [
+        "Spiced rum",
+        "Ginger ale"
+      ],
+      "measures": [
+        "1 oz ",
+        ""
+      ]
+    },
+    {
+      "name": "Grim Reaper",
+      "isAlcoholic": true,
+      "imageSource": "https://www.thecocktaildb.com/images/media/drink/kztu161504883192.jpg",
+      "description": "Mix Kahlua and 151 in glass. Quickly add ice and pour grenadine over ice to give ice red tint.",
+      "ingredients": [
+        "Kahlua",
+        "151 proof rum",
+        "Grenadine"
+      ],
+      "measures": [
+        "1 oz ",
+        "1 oz Bacardi ",
+        "1 dash "
+      ]
+    },
+    {
+      "name": "Rum Old-fashioned",
+      "isAlcoholic": true,
+      "imageSource": "https://www.thecocktaildb.com/images/media/drink/otn2011504820649.jpg",
+      "description": "Stir powdered sugar, water, and bitters in an old-fashioned glass. When sugar has dissolved add ice cubes and light rum. Add the twist of lime peel, float 151 proof rum on top, and serve.",
+      "ingredients": [
+        "Light rum",
+        "151 proof rum",
+        "Powdered sugar",
+        "Bitters",
+        "Water",
+        "Lime peel"
+      ],
+      "measures": [
+        "1 1/2 oz ",
+        "1 tsp ",
+        "1/2 tsp ",
+        "1 dash ",
+        "1 tsp ",
+        "Twist of "
+      ]
+    }
+  ]
+}

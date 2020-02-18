@@ -1,6 +1,6 @@
 let Calls = (function() {
 
-    var favouriteDrinks = []
+    var favouriteDrinks = [];
 
     function searchCocktailsImpl(searchInput) {
         fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=' + searchInput)
@@ -8,18 +8,18 @@ let Calls = (function() {
             .then(json => {
 
                 var drinks = json.drinks;
-
+                var searchResultsDiv = document.getElementById("searchResultsDiv");
                 //Next line will clear complete div, so they don't append on next search...
-                document.getElementById("searchResultsDiv").innerHTML = "";
+                searchResultsDiv.innerHTML = "";
 
                 if (drinks == null) {
                     var noSearchResultDiv = generateErrorDiv("OOPS! We couldnt't find any drinks :(", "brokenSearch.png");
-                    document.getElementById("searchResultsDiv").appendChild(noSearchResultDiv);
+                    searchResultsDiv.appendChild(noSearchResultDiv);
                 } else if (searchInput == "") {
                     var noSearchInputDiv = generateErrorDiv("OOPS! Empty search :(", "brokenSearch.png");
-                    document.getElementById("searchResultsDiv").appendChild(noSearchInputDiv);
-                } else fillResultsDiv(drinks);
-            })
+                    searchResultsDiv.appendChild(noSearchInputDiv);
+                } else fillSearchResultsDiv(drinks);
+            });
     }
 
     function searchForCocktailsByIngredientImpl(searchInput) {
@@ -54,7 +54,7 @@ let Calls = (function() {
                             drinksWithSpecifiedIngredient.push(json.drinks[0]);
                         }));
                     Promise.all(promises).then(function(ok) {
-                        fillResultsDiv(drinksWithSpecifiedIngredient);
+                        fillSearchResultsDiv(drinksWithSpecifiedIngredient);
                     });
                 }
 
@@ -95,7 +95,7 @@ let Calls = (function() {
                                 i--;
                             }
                     }
-                    fillResultsDiv(drinks);
+                    fillSearchResultsDiv(drinks);
                 }
             })
     }
@@ -113,7 +113,7 @@ let Calls = (function() {
                 randomDrinks.push(json.drinks[0]);
             }));
         Promise.all(promises).then(function(ok) {
-            fillResultsDiv(randomDrinks);
+            fillSearchResultsDiv(randomDrinks);
         });
 
     }
@@ -221,7 +221,7 @@ let Calls = (function() {
     }
 
     function fillFavouriteDrinksImpl() {
-        var resultsDiv = document.getElementById("searchResultsDiv");
+        var resultsDiv = document.getElementById("favouriteDrinksDiv");
         resultsDiv.innerHTML = "";
 
         for (var i = 0; i < favouriteDrinks.length; i++) {
@@ -331,19 +331,19 @@ function generateImage(src, width, height) {
 
 function generateErrorDiv(message, imageSource) {
 
-    var noSearchResultDiv = document.createElement("div");
-    noSearchResultDiv.style.padding = "15px";
-    noSearchResultDiv.style.textAlign = "center";
+    var errorDiv = document.createElement("div");
+    errorDiv.setAttribute("id", "errorDiv");
 
     var errorMessage = document.createElement("p");
+    errorMessage.setAttribute("id", "wrongSearch")
     errorMessage.innerHTML = message;
-    errorMessage.classList.add("wrongSearch");
 
     var errorImage = generateImage(imageSource, "200", "200");
 
-    noSearchResultDiv.appendChild(errorMessage);
-    noSearchResultDiv.appendChild(errorImage);
-    return noSearchResultDiv;
+    errorDiv.appendChild(errorMessage);
+    errorDiv.appendChild(errorImage);
+
+    return errorDiv;
 }
 
 function generateCocktailName(cocktailName) {
@@ -554,7 +554,7 @@ function generateCocktailDescription(drink, isOnFavourite, breakSize, cocktailDe
     return cocktailDescription;
 }
 
-function fillResultsDiv(drinks) {
+function fillSearchResultsDiv(drinks) {
     var resultsDiv = document.getElementById("searchResultsDiv");
     for (var i = 0; i < drinks.length; i++) {
         var drinkDiv = document.createElement("div");
