@@ -17,7 +17,7 @@ WHICH API WAS USED? https://www.thecocktaildb.com/api.php
 
 ADDITIONAL INFO
 - Node.js version v12.14.0
-- Node Packet Manager (NPM) version 6.13.4
+- Node Package Manager (NPM) version 6.13.4
 
 
 
