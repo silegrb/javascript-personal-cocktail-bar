@@ -136,7 +136,13 @@ let Calls = (function() {
                                 i--;
                             }
                     }
-                    fillSearchResultsDiv(drinks);
+
+                    if (drinks.length == 0) {
+                        var alcoholicSign = "alcohol free";
+                        if (isAlcoholic) alcoholicSign = "alcoholic";
+                        var noSearchResultDiv = generateErrorDiv("OOPS! We couldnt't find any " + alcoholicSign + " drinks :(", "brokenSearch.png");
+                        searchResultsDiv.appendChild(noSearchResultDiv);
+                    } else fillSearchResultsDiv(drinks);
                 }
             });
     }
