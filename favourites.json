@@ -1,31 +1,21 @@
 {
   "favourites": [
     {
-      "name": "Brain Fuck",
+      "name": "Diesel",
       "isAlcoholic": true,
-      "imageSource": "https://www.thecocktaildb.com/images/media/drink/ruywtq1461866066.jpg",
-      "description": "layered erin first, then sambuca and then avocart(should sit in middle of other two. To drink: use a straw to suck up avocart then shot the rest and then suck fumes up through straw.",
+      "imageSource": "https://www.thecocktaildb.com/images/media/drink/sxrrqq1454512852.jpg",
+      "description": "Pour the lager first then add the blackcurrant cordial. Top up with the cider. The colour sholud be very dark approaching the colour of Guiness. Dont do it mannnnn asfasfasfasfasfasf",
       "ingredients": [
-        "New ingredient",
+        "Lager",
+        "Cider",
+        "Blackcurrant cordial",
         "New ingredient"
       ],
       "measures": [
-        "New measure",
+        "1/2 pint ",
+        "1/2 pint ",
+        "1 dash ",
         "New measure"
-      ]
-    },
-    {
-      "name": "Queen Bee",
-      "isAlcoholic": true,
-      "imageSource": "https://www.thecocktaildb.com/images/media/drink/rvvpxu1478963194.jpg",
-      "description": "Shake all ingredients with ice, strain into a cocktail glass, and serve.",
-      "ingredients": [
-        "Lime vodka",
-        "Sherry"
-      ],
-      "measures": [
-        "1 1/2 oz ",
-        "1/2 oz cream "
       ]
     }
   ]

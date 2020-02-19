@@ -19,7 +19,7 @@ function clickSaveButton() {
         jsonFavouriteDrink.isAlcoholic = (favouriteDrinkDivs[i].children[1].innerHTML == "ALCOHOLIC");
         jsonFavouriteDrink.imageSource = favouriteDrinkDivs[i].children[2].children[0].src;
 
-        var unformattedDrinkDescription = favouriteDrinkDivs[i].children[2].children[1].children[0].innerHTML;
+        var unformattedDrinkDescription = favouriteDrinkDivs[i].children[2].children[1].children[0].children[0].innerHTML;
         var formattedDrinkDescription = unformattedDrinkDescription.replace(/<br>/g, "");
         jsonFavouriteDrink.description = formattedDrinkDescription;
 
@@ -53,7 +53,7 @@ function clickCancelButton(clickedFavouriteDrinkDiv) {
             var lastVersionDrink = (Calls.getFavouriteDrinks())[i];
 
             favouriteDrinkDivs[i].children[0].children[0].innerHTML = lastVersionDrink.name;
-            favouriteDrinkDivs[i].children[2].children[1].children[0].innerHTML = lastVersionDrink.description;
+            favouriteDrinkDivs[i].children[2].children[1].children[0].children[0].innerHTML = lastVersionDrink.description;
 
             //We need to clear the ingredients table and generate a new one.
             var ingredientsTable = favouriteDrinkDivs[i].children[2].children[1].children[1];

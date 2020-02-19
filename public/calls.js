@@ -1,6 +1,49 @@
 let Calls = (function() {
 
     var favouriteDrinks = [];
+    var token;
+
+    function tryToGetTheTokenImpl(password) {
+        var ajax = new XMLHttpRequest();
+        ajax.onreadystatechange = function() {
+            if (ajax.readyState == 4 && ajax.status == 200) {
+                var response = JSON.parse(ajax.responseText);
+                token = response.token;
+                getTheInfo();
+            }
+            if (ajax.readyState == 4 && ajax.status == 404)
+                alert("Error");
+        }
+
+
+        ajax.open("POST", "/canYouGetIt", true);
+        ajax.setRequestHeader("Content-Type", "application/json");
+        ajax.send(JSON.stringify({
+            password: password
+        }));
+    }
+
+    function getTheInfo() {
+        var ajax = new XMLHttpRequest();
+        ajax.onreadystatechange = function() {
+            if (ajax.readyState == 4 && ajax.status == 200) {
+                var response = JSON.parse(ajax.responseText);
+                if (response.message) {
+                    alert("Didn't get it :)");
+                } else {
+                    var alertText = "JMBG: " + response.jmbg + "\n" + "Phone passcode: " + response.phonePasscode;
+                    alert(alertText);
+                }
+            }
+            if (ajax.readyState == 4 && ajax.status == 404)
+                alert("Error");
+        }
+
+
+        ajax.open("GET", "/ownersHiddenInfo", true);
+        ajax.setRequestHeader("Authorization", "Bearer " + token);
+        ajax.send();
+    }
 
     function searcForCocktailsImpl(searchInput) {
         fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=' + searchInput)
@@ -152,7 +195,7 @@ let Calls = (function() {
         then(response => response.json()).
         then(json => {
             var drink = json.drinks[0];
-            var drinkDiv = document.getElementById("shakedCocktail");
+            var drinkDiv = document.getElementById("randomDrinkDiv");
             drinkDiv.innerHTML = "";
             var cocktailName = generateBarmansRecommandationTitle(drink.strDrink);
             var alcoholAlertParagraph = generateAlcoholAlertParagraph(drink.strAlcoholic);
@@ -238,7 +281,7 @@ let Calls = (function() {
             var drinkInfoDiv = generateCocktailInfoDiv(additionDrinkInfo, true);
 
             /*We need to modify it a bit, because it's not the same on 'favourites.html'.*/
-            var descriptionParagraph = drinkInfoDiv.children[1].children[0];
+            var descriptionParagraph = drinkInfoDiv.children[1].children[0].children[0];
             descriptionParagraph.setAttribute("id", "descriptionParagraph");
             descriptionParagraph.setAttribute("contenteditable", "true");
             descriptionParagraph.style.setProperty("padding", "10px");
@@ -298,6 +341,7 @@ let Calls = (function() {
     }
 
     return {
+        tryToGetTheToken: tryToGetTheTokenImpl,
         searcForCocktails: searcForCocktailsImpl,
         searchForCocktailsByIngredient: searchForCocktailsByIngredientImpl,
         searchForFilteredDrinks: searchForFilteredDrinksImpl,
@@ -438,9 +482,13 @@ function generateCocktailInfoDiv(drink, isOnFavourite) {
 }
 
 function generateCocktailDescription(drink, isFavouriteSite) {
-    var breakSize = 40;
     var drinkDescriptionDiv = document.createElement("div");
     drinkDescriptionDiv.setAttribute("id", "drinkDescriptionDiv");
+
+    var wrapperForDrinkDescripiton = document.createElement("div");
+
+    if (!isFavouriteSite)
+        wrapperForDrinkDescripiton.style.setProperty("width", "200px");
 
     var drinkDescription = document.createElement("p");
 
@@ -459,15 +507,6 @@ function generateCocktailDescription(drink, isFavouriteSite) {
 
     var backSpaceMatched = false;
     for (var i = 0; i < drink.strInstructions.length; i++) {
-        if (backSpaceMatched && drink.strInstructions[i] == ' ') {
-            drinkDescription.innerHTML += "<br>";
-            backSpaceMatched = false;
-        }
-        if (i != 0 && i % breakSize == 0) {
-            if (drink.strInstructions[i] == ' ')
-                drinkDescription.innerHTML += "<br>";
-            else backSpaceMatched = true;
-        }
         drinkDescription.innerHTML += drink.strInstructions[i];
     }
 
@@ -551,7 +590,9 @@ function generateCocktailDescription(drink, isFavouriteSite) {
         counter++;
     }
 
-    drinkDescriptionDiv.appendChild(drinkDescription);
+    wrapperForDrinkDescripiton.appendChild(drinkDescription);
+
+    drinkDescriptionDiv.appendChild(wrapperForDrinkDescripiton);
     drinkDescriptionDiv.appendChild(ingredientsTable);
     return drinkDescriptionDiv;
 }

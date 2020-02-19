@@ -36,7 +36,7 @@ h1 {
 ########## HOME CSS ##################
 ######################################*/
 
-.homeMainDiv {
+#homeMainDiv {
     display: flex;
 }
 
@@ -525,6 +525,21 @@ th {
     text-align: center;
 }
 
+#secretButton {
+    width: 15vw;
+    border: none;
+    border-radius: 10px;
+    font-size: 25px;
+    background: #3cd070;
+    color: white;
+    font-family: 'Abel';
+}
+
+#secretButton:hover {
+    transition: 1s;
+    background: linear-gradient(217deg, rgba(255, 0, 0, .8), rgba(255, 0, 0, 0) 70.71%), linear-gradient(127deg, rgba(0, 255, 0, .8), rgba(0, 255, 0, 0) 70.71%), linear-gradient(336deg, rgba(0, 0, 255, .8), rgba(0, 0, 255, 0) 70.71%);
+}
+
 
 /*####################################
 ########## ADDITIONAL CSS ############
@@ -540,7 +555,9 @@ input:focus,
 #saveButton:focus,
 #cancelEdittingButton:focus,
 #removeFavouriteDrinkButton:focus,
-#removeIngredientButton:focus {
+#removeIngredientButton:focus,
+#goButton:focus,
+#secretButton:focus {
     outline: none;
 }
 
@@ -554,7 +571,9 @@ input:focus,
 #shakeButton:active,
 #removeFavouriteDrinkButton:active,
 #addIngredientButton:active,
-#removeIngredientButton:active {
+#removeIngredientButton:active,
+#goButton:active,
+#secretButton:active {
     transform: translateY(5px);
 }
 
