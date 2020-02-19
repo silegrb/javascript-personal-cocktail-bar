@@ -15,6 +15,10 @@ WHICH API WAS USED? https://www.thecocktaildb.com/api.php
 - Search by ingredient: https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Gin
 - Lookup a random cocktail: https://www.thecocktaildb.com/api/json/v1/1/random.php
 
+ADDITIONAL INFO
+- Node.js version v12.14.0
+- Node Packet Manager (NPM) version 6.13.4
+
 
 
 
