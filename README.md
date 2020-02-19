@@ -1,5 +1,7 @@
 Project "Cocktail Bar Softhouse" is a Website used for searching cocktails, saving the ones you like and eventually tailor chosen ones to your own taste. Website can be used to learn about interesting combinations of ingredients forming a perfect drink that you can order in future or surprise your friends at your own house party.
 
+DEMO: https://drive.google.com/open?id=1wvuxi3hQy5yB2sZe3QM8EAr28QdYhJoy
+
 HOW TO START?
 - Open the Command Prompt.
 - Navigate onto Desktop (cd Desktop) or wherever you wish.
