@@ -1,22 +1,3 @@
 {
-  "favourites": [
-    {
-      "name": "Diesel",
-      "isAlcoholic": true,
-      "imageSource": "https://www.thecocktaildb.com/images/media/drink/sxrrqq1454512852.jpg",
-      "description": "Pour the lager first then add the blackcurrant cordial. Top up with the cider. The colour sholud be very dark approaching the colour of Guiness. Dont do it mannnnn asfasfasfasfasfasf",
-      "ingredients": [
-        "Lager",
-        "Cider",
-        "Blackcurrant cordial",
-        "New ingredient"
-      ],
-      "measures": [
-        "1/2 pint ",
-        "1/2 pint ",
-        "1 dash ",
-        "New measure"
-      ]
-    }
-  ]
+  "favourites": []
 }

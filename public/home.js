@@ -30,7 +30,7 @@ function pickSearchMode(pickedOption) {
             searchBar.setAttribute("placeholder", "Search for only alcohol free cocktails");
             break;
         case 5:
-            clickSearch();
+            clickSearchButton();
             break;
         default:
     }
