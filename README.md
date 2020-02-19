@@ -17,6 +17,7 @@ WHICH API WAS USED? https://www.thecocktaildb.com/api.php
 
 BONUS (Authentication with REST API)
 - Secret Button (implemented with JsonWebTokens just to show how should it work)
+- Use the "kjkszpj1337" password
 
 ADDITIONAL INFO
 - Node.js version v12.14.0
