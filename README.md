@@ -15,6 +15,9 @@ WHICH API WAS USED? https://www.thecocktaildb.com/api.php
 - Search by ingredient: https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Gin
 - Lookup a random cocktail: https://www.thecocktaildb.com/api/json/v1/1/random.php
 
+BONUS (Authentication with REST API)
+- Secret Button (implemented with JsonWebTokens just to show how should it work)
+
 ADDITIONAL INFO
 - Node.js version v12.14.0
 - Node Package Manager (NPM) version 6.13.4
